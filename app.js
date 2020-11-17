@@ -18,7 +18,14 @@ const indexRouter = require('./routes/index');
 const app = express();
 
 // view engine setup
-app.set('views', [path.join(__dirname, 'views'),path.join(__dirname, 'views/user')]);
+app.set('views', 
+  [
+    path.join(__dirname, 'views'),
+    path.join(__dirname, 'views/user'),
+    path.join(__dirname, 'views/footer'),
+    path.join(__dirname, 'views/header')
+  ]
+);
 app.set('view engine', 'ejs');
 
 // middle ware

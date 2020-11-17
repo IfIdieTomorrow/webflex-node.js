@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+@font-face{	
+	font-family: 'NanumSquareRound';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-size: 1.5rem;
+}
+
+/*reset*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,a,button,form,fieldset,p,blockquote{margin:0;padding:0}
+img, fieldset {border:none}
+body, dl, dt, dd, th, td, div, p, a, button, table,li, form, fieldset,legend, input, button, textarea, select {}
+body, dl, dt, dd, th, td, div, p, a, button, table,li {font-size:16px;}
+form, fieldset,legend, input, button, textarea, select {font-size:13px}
+ul, ol {list-style:none}
+table {border-collapse:collapse}
+input, textarea {display:inline-block;font-size:13px;vertical-align:middle}
+textarea {resize:none} 
+address, em {font-style:normal}
+th, td {padding:0;vertical-align:top;text-align:left;font-weight:normal}
+
+body{
+	font-family:'NanumSquareRound';
+}
+.mypage {
+	font-family:'NanumSquareRound';
+	margin: 5% 0%;
+	padding: 0% 25%;
+	margin-bottom: 120px;
+	margin-top: 110px;
+}
+
+h1 {
+	padding-top : 5%;
+	font-size: 2.15em;
+}
+
+#first, #second, #third, #fourth {
+	padding-left: 10px;
+}
+
+#first-left, #second-left, #third-left, #fourth-left {
+	float: left;
+	margin-top: 0;
+	display: inline-block;
+}
+
+#first-center, #second-center, #third-center, #fourth-center {
+	margin-top: 10px;
+	padding-left: 30%;
+	margin-right: 0px;
+	top: 0px;
+}
+
+#change_mail, #change_pwd, #money,#change_ctn_click{
+	padding: 0px;
+	float: right;
+	top: 0px;
+	margin-top: 0px;
+	color: black;
+	margin-bottom: 5px;
+	color : #0073e6;
+}
+#change_ctn{
+	color: black;
+	padding: 5px;
+	display: inline-block;
+}
+#money{
+	text-decoration: none;
+	color: black;
+}
+#money:hover{
+	text-decoration: none;
+}
+#button{
+	font-weight : light;
+	color : white;
+}
+button{
+	font-family :'NanumSquareRound';
+	text-decoration : none;
+	margin-right : 10px;
+	margin-top : 10px;
+	border : none;
+	border-radius:10px 10px;
+	height : 40px;
+	background-color: #00A5DF;
+	width : 150px;
+}
+button:hover{
+	font-family:'NanumSquareRound';
+	text-decoration : none;
+	font-weight : light;
+	box-shadow : 2px 2px #132E53;
+		border : none;
+		border-radius:10px 10px;
+	background-color:#00A5DF;
+	color : white;
+		width : 150px;
+		height : 40px;
+}

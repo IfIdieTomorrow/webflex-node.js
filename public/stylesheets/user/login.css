@@ -192,7 +192,6 @@ p {
    padding:12px 0;
    margin-top:-12px;
    border:1px solid #fff;
-   border-radius:2px;
    font-size:16px;
    color:#fff;
    text-align:center;
@@ -208,6 +207,15 @@ p {
    font-weight:700;
 }
 
+.naver .link_login{
+   transition: all 0.5s ease-out;
+}
+.naver .link_login:hover{
+   border: 1px solid black;
+   border-radius: 2px;
+   transition: all 0.5s ease-out;
+}
+
 .naver:hover{
 	background-color: #19ce60;
 	/* 변형할 것은 배경 1초, 빠른 시작 서서히 감속*/
@@ -220,10 +228,7 @@ p {
    background-color: #E7E600;
    transition: background 0.5s ease-out
 }
-.link_login:hover{
-	color: black;
-	transition: color 0.5s ease-out
-}
+
 #facebook {
    transition : all 0.5s ease-out;
 }

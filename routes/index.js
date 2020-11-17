@@ -6,9 +6,11 @@ const apiRouter = require("./api/check");
 const kakakoRouter = require("./auth/kakao");
 const facebookRouter = require("./auth/facebook");
 const naverRoter = require("./auth/naver");
+const mypageRouter = require("./user/mypage");
 
 router.use("/user", loginRouter);
 router.use("/user", joinRouter);
+router.use("/user", mypageRouter);
 router.use("/api", apiRouter);
 router.use("/auth/kakao", kakakoRouter);
 router.use("/auth/facebook", facebookRouter);

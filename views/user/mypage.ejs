@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>::WEBFLEX MY PAGE::</title>
+<link rel="stylesheet" type="text/css" href="../stylesheets/mypage/mypage.css" />
+<link rel="icon" type="image/png" sizes="16x16" href="../images/index/new logo.png">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<style type="text/css">
+.my_hr{
+	width: 100%;
+}
+.mypage{
+	margin-bottom: 150px;
+	margin-top: 230px;
+}
+</style>
+</head>
+<body>
+    <!-- <jsp:include page="../header/subpage_header.jsp"></jsp:include> -->
+    <% include ./header/subpage_header.ejs %>
+	<div class="mypage">
+		<h1>내 계정</h1>
+		<br>
+		<hr class="my_hr">
+		<div class="main">
+		<jsp:useBean id="now" class="java.util.Date"></jsp:useBean>
+			<section id="first">
+				<div id="first-left">
+				<% if(!user.payment){%>
+					<p>멤버십 & 결제 정보</p>
+					<button id="delete_btn">
+						<a href="/payment" id="button">이용권 구입</a>
+					</button>
+                <%} %>
+                    
+				<% if(user.payment){%>
+
+					<%if(user.authority){ %>
+					<h3>관리자 계정입니다.</h3>
+                    <%} %>
+                    <% if(!user.authority){%>
+					<h3>이용기간</h3><br>
+					<p>결제일 : <%= user.paydate %> </p>
+					<p>종료일 :  </p>
+					<p>남은기간 : </p> 
+                    <%} %>
+                <%}  %> 
+				</div>
+
+				<div id="first-center">
+					<div id="mem">
+						<div id="email">
+							<p>ID : <%=user.email%></p>
+							<br>
+						</div>
+						<div id="pwd">
+							<p>
+								비밀번호 : ******** <a href="/user/change/nick" id="change_pwd"> 비밀 번호 변경 </a>
+							</p>
+							<br>
+						</div>
+						<div id="phone">
+							<p>
+								닉네임 : <%= user.nick%> <a href="/user/change/nick" id="change_pwd"> 닉네임 변경 </a>
+							</p>
+						</div>
+					</div>
+					<hr class="my_hr">
+					<div id="account">
+						<div id="credit">
+							<p>
+								<br> 결제 상세 정보
+							</p>
+							<hr class="my_hr">
+							<%if(user.payment){%>
+								<p>
+									결제여부: <%= user.mop %>
+								</p>
+						</div>
+					</div>
+				</div>
+
+			</section>
+
+			<hr class="my_hr">
+
+			<section id="second">
+				<div id="second-left">
+					<p>멤버십 상세 정보</p>
+				</div>
+
+				<div id="second-center">
+					<p>
+						
+					</p>
+					<br>
+				</div>
+                <%}%>
+                
+				<% if(!user.payment){%>
+					<b>결제가 완료되지 않았습니다.</b>
+				<%}%>
+
+
+			</section>
+			<hr class="my_hr">
+			<section id="third">
+				<div id="third-left">
+					<p>컨텐츠 정보</p>
+				</div>
+				<div id="third-center">
+					<p>
+                    <%if(user.category!=null){%>
+						관심 컨텐츠 <a href="/category_add" id="change_ctn_click"> 컨텐츠 수정하기 </a>
+                    <%} %>
+					<%if(user.category==null){%>
+						관심 컨텐츠 <a href="/category_add" id="change_ctn_click"> 컨텐츠 추가하기 </a>
+					<%}%>
+					</p>
+					<hr class="my_hr">
+					<div id="list">
+						<p>
+                        <%if(user.category!=null){%>
+							<!-- <c:forTokens items="${user.category }" delims="," var="category">
+								<a href="/searchView?search=${category }" id="change_ctn">#${category }</a>					
+							</c:forTokens>
+							<a style="color : #0073E6; float:right;" href="/category_del">카테고리 삭제</a> -->
+                        <%}%>
+                        <%if(user.category==null){%>
+							관심있는 카테고리가 존재하지 않습니다.
+                        <%}%>
+						</p>
+					</div>
+				</div>
+				<br>
+			</section>
+			<hr class="my_hr">
+			<section id="fourth">
+				<div id="fourth-center">
+					<button>
+						<a href="/user/logout" id="button">로그아웃</a>
+					</button>
+					<button>
+						<a href="/help_notice" id="button">공지 사항</a>
+					</button>
+					<button>
+						<a href="/sign_out" id="button">회원탈퇴</a>
+					</button>
+				</div>
+			</section>
+
+		</div>
+	</div>
+	<% include ./footer/footer.ejs %>
+</body>
+</html>
