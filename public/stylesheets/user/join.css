@@ -1,0 +1,210 @@
+@charset "UTF-8";
+
+
+
+
+body {
+   background-size: auto;
+}
+
+@font-face {
+   font-family: 'NanumSquareRound';
+   src:
+      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff')
+      format('woff');
+   font-weight: normal;
+   font-style: normal;
+   font-size: 1.0rem;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, a, button,
+   form, fieldset, p, blockquote {
+   margin: 0;
+   padding: 0
+}
+
+img, fieldset {
+   border: none
+}
+
+body, dl, dt, dd, th, td, div, p, a, button, table, li, form, fieldset,
+   legend, input, button, textarea, select {
+   
+}
+
+body, dl, dt, dd, th, td, div, p, a, button, table, li {
+   font-size: 12px;
+}
+
+form, fieldset, legend, input, button, textarea, select {
+   font-size: 13px
+}
+
+ul, ol {
+   list-style: none
+}
+
+table {
+   border-collapse: collapse
+}
+
+input, textarea {
+   display: inline-block;
+   font-size: 13px;
+   vertical-align: middle
+}
+
+textarea {
+   resize: none
+}
+
+address, em {
+   font-style: normal
+}
+
+th, td {
+   padding: 0;
+   vertical-align: top;
+   text-align: left;
+   font-weight: normal
+}
+
+header {
+   margin-left: 40px;
+   margin-top: 20px;
+}
+
+h3 {
+   text-align: center;
+}
+
+body {
+   position: static;
+   font-family: 'BebasNeue', 'NanumSquareRound';
+   background-image: url("../../images/index/new_background.jpg");
+   background-repeat: repeat;
+   background-size: auto;
+}
+
+legend {
+   align-content: center;
+   text-align: center;
+}
+
+p {
+   font-size: 1.0rem;
+   text-align: center;
+   font-weight: bold;
+}
+
+#title_join {
+   margin: none;
+   font-weight: bold;
+   font-size: 2.5em;
+   text-align: center;
+}
+
+.fieldset {
+   margin: 5% auto;
+   width: 25%;
+   padding: 5% 5%;
+   border: none;
+   text-align: left;
+   background-color: white;
+   opacity: 80%;
+   text-align: left;
+}
+
+.type01 {
+   font-family: 'BebasNeue', 'NanumSquareRound';
+   width: 88%;
+   outline: none;
+   border-style: solid;
+   border-width: 0 0 0 13px;
+   padding: 13px;
+   word-break: break-all;
+   background-color: white;
+   border-color: #DB202C;
+   color: black;
+   font-size: 1.50em;
+   margin-bottom: 20px;
+}
+
+.type01:hover {
+   border-width: 0 0 0 13px;
+   padding: 13px;
+   background-color: white;
+   border-color: #DB202C;
+   color: #DB202C;
+   font-size: 1.50em;
+   box-shadow: 1px 1px 1px #DB202C;
+}
+
+.next {
+   font-family: 'NanumSquareRound';
+   width: 20em;
+   height: 3em;
+   border-style: solid;
+   background-color: #DB202C;
+   border: 150px;
+   border-radius: 10px;
+   margin-right: -4px;
+   font-size: 15px;
+   font-style: bold;
+   color: white;
+   display: block;
+   margin: auto;
+}
+
+#birth {
+   color: #75777a;
+   padding: 0px 15px;
+   font-size: 20px;
+}
+
+#join_birth {
+   border-color: #DB202C;
+   border-style: solid;
+   border-width: 0 0 0 13px;
+   align-items: center;
+}
+
+#birthyy, #birthmm, #birthdd {
+   margin-left: 25px;
+   font-family: 'BebasNeue', 'NanumSquareRound';
+   width: 100px;
+   outline: none;
+   border: 1px solid #DB202C;
+   word-break: break-all;
+   background-color: white;
+   color: #DB202C;
+   font-size: 1em;
+}
+
+#birthyy:hover, #birthmm:hover, #birthdd:hover {
+   font-family: 'BebasNeue', 'NanumSquareRound';
+   background-color: white;
+   color: #DB202C;
+   font-size: 1em;
+   box-shadow: 1px 1px 1px #DB202C;
+}
+#birth_check{
+   margin-left: 24px;
+    line-height: 24px;
+}
+#checkbox_promotion h3{
+   text-align: left;
+    margin-left: 22px;
+    color: #75777a;
+}
+#join_pwd{
+   margin-top:5px;
+}
+/* #footer {
+   position: absolute;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+	padding: 15px 0;
+	text-align: center;
+} */

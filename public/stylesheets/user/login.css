@@ -1,0 +1,233 @@
+@charset "UTF-8";
+
+@font-face {
+   font-family: 'NanumSquareRound';
+   src:
+      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff')
+      format('woff');
+   font-weight: normal;
+   font-style: normal;
+   font-size: 1.5rem;
+}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,a,button,form,fieldset,p,blockquote{margin:0;padding:0}
+img, fieldset {border:none}
+body, dl, dt, dd, th, td, div, p, a, button, table,li, form, fieldset,legend, input, button, textarea, select {}
+body, dl, dt, dd, th, td, div, p, a, button, table,li {font-size:12px;}
+form, fieldset,legend, input, button, textarea, select {font-size:13px}
+ul, ol {list-style:none}
+table {border-collapse:collapse}
+input, textarea {display:inline-block;font-size:13px;vertical-align:middle}
+textarea {resize:none} 
+address, em {font-style:normal}
+th, td {padding:0;vertical-align:top;text-align:left;font-weight:normal}
+header {
+   margin-left: 40px;
+   margin-top: 20px;
+}
+
+body {
+   font-family: 'BebasNeue', 'NanumSquareRound';
+   background-image: url("../../images/index/new_background.jpg");
+   background-repeat: no-repeat;
+   background-size: 100%;
+   
+}
+
+legend {
+   text-align: center;
+}
+
+
+p {
+   font-size: 1.50rem;
+   color: white;
+}
+
+#title_login {
+   font-size: 2.5rem;
+   text-align: center;
+}
+
+.login_main {
+   text-align: center;
+   color: white;
+}
+
+.fieldset {
+   
+   margin-top : 100px;
+   margin-left: auto;
+   margin-right: auto;
+   width: 500px;
+   padding: 60px 20px 60px 40px;
+   border: none;
+   text-align: left;
+   background-color: black;
+   opacity: 80%;
+   text-align: left;
+}
+
+.type01 {
+   font-family: 'BebasNeue';
+   width: 400px;
+   border-style: solid;
+   border-width: 0 0 0 15px;
+   padding: 15px;
+   word-break: break-all;
+   background-color: black;
+   border-color: #DB202C;
+   color: white;
+   font-size: 20px;
+}
+.type01:focus{
+	outline: none;
+}
+.type01:active{
+	outline: none;
+}
+
+.login_btn {
+   font-family: 'NanumSquareRound';
+   border-style: solid;
+   border: 150px;
+   background-color: black;
+   color: white;
+   border-radius: 5px;
+   margin-right: -4px;
+   position: left;
+   font-size: 15px;
+   font-style: bold;
+}
+
+.login_btn:hover {
+   font-family: 'NanumSquareRound';
+   background-color: white;
+   color: black;
+   border-color: white;
+   border-radius: 5px;
+}
+
+.Register:hover {
+   font-family: 'NanumSquareRound';
+   background-color: white;
+   color: black;
+   border-color: white;
+   border-radius: 5px;
+}
+
+.find {
+   font-family: 'NanumSquareRound';
+   border-style: solid;
+   border: 150px;
+   background-color: black;
+   color: white;
+   border-radius: 5px;
+   font-size: 15px;
+   font-style: bold;
+}
+
+.find:hover {
+   font-family: 'NanumSquareRound';
+   background-color: white;
+   color: black;
+   border-color: white;
+   border-radius: 5px;
+}
+
+#warning {
+   float : left;
+   font-size: 15px;
+}
+
+.join {
+   font-family: 'NanumSquareRound';
+   border-style: solid;
+   border-width: 0 0 0 10px;
+   border: 150px;
+   background-color: black;
+   color: white;
+   border-radius: 5px;
+   font-size: 18px;
+   font-style: bold;
+   text-decoration: none;
+}
+
+.join:hover {
+   font-family: 'NanumSquareRound';
+   background-color: white;
+   color: black;
+   border-color: white;
+   border-radius: 5px;
+   text-decoration: none;
+   padding: 5px;
+}
+.check_id,.check_pwd{
+   margin-right: 50px;
+   float : right;
+   font-family: 'NanumSquareRound';
+   border-style: solid;
+   border-width: 0 0 0 10px;
+   border: 150px;
+   background-color: black;
+   color: white;
+   border-radius: 5px;
+   font-size: 18px;
+   font-style: bold;
+   text-decoration: none;
+}
+
+.check_id:hover, .check_pwd:hover{
+      margin-right: 50px;
+   float : right;
+      font-family: 'NanumSquareRound';
+   background-color: white;
+   color: black;
+   border-color: white;
+   border-radius: 5px;
+   text-decoration: none;
+   padding: 5px;
+}
+.naver .link_login{
+   display:block;
+   padding:12px 0;
+   margin-top:-12px;
+   border:1px solid #fff;
+   border-radius:2px;
+   font-size:16px;
+   color:#fff;
+   text-align:center;
+   text-decoration:none; 
+}
+.naver{
+	transition: all 0.5s ease-out
+}
+.naver .link_login .blind{
+   font-style:normal;
+   margin-right:5px;
+   font-size:18px;
+   font-weight:700;
+}
+
+.naver:hover{
+	background-color: #19ce60;
+	/* 변형할 것은 배경 1초, 빠른 시작 서서히 감속*/
+	transition: background 0.5s ease-out
+}
+#kakao {
+   transition : all 0.5s ease-out;
+}
+#kakao:hover{
+   background-color: #E7E600;
+   transition: background 0.5s ease-out
+}
+.link_login:hover{
+	color: black;
+	transition: color 0.5s ease-out
+}
+#facebook {
+   transition : all 0.5s ease-out;
+}
+#facebook:hover{
+   background-color: #3B5998;
+   transition: background 0.5s ease-out
+}
