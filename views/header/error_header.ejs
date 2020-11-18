@@ -2,17 +2,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="../stylesheets/header/subpage_header.css" />
-<link rel="icon" type="image/png" sizes="16x16" href="../images/index/new logo.png">
+<link rel="stylesheet" type="text/css" href="../../stylesheets/header/subpage_header.css" />
+<link rel="icon" type="image/png" sizes="16x16" href="./images/index/new logo.png">
 <style type="text/css">
 </style>
 </head>
 <body>
 <header>
 <div id="right_head">
-<a href="/"><img src="../images/index/logo_red.png" width=7% height=4% id="logo"/></a>
+<a href="/"><img src="../../images/index/logo_red.png" width=7% height=4% id="logo"/></a>
 <li class="sub-menu-parent" tab-index="0" >
-  <a href="http://google.com"><img src= "../images/index/new logo.png" width=30px height=30px ></a>
+  <a href="http://google.com"><img src= "../../images/index/new logo.png" width=30px height=30px ></a>
     <ul class="sub-menu">
       <li><a href="/user/mypage">마이 홈</a></li>
       <li><hr></li>
@@ -20,9 +20,10 @@
       <li><hr></li>
       <% if(typeof status == 'undefined'){ %> 
         <li><a href="/user/login">로그인</a></li>
-      <% } else { %>
+      <% } else {%>
         <li><a href="/user/logout">로그아웃</a></li>
       <% } %> 
+
     </ul>
 </li>
 </div>

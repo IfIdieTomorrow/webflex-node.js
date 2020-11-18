@@ -23,9 +23,8 @@ router.get('/', function(req, res, next) {
     req.session.payment = req.user.payment;
     req.session.social = req.user.social;
     req.session.authority = req.user.authority;
+    req.session.status = "logined";
   }
-  console.log("req.user : ",req.user);
-  console.log("req.session : ",req.session);
   res.render('index', { title: 'Express' });
 });
 

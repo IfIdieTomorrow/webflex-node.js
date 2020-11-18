@@ -43,7 +43,15 @@ app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname,"public")));
+// locals에 session에서 받아온 값을 저장하는 미들웨어
+// 모든 ejs템플릿에서 세션값을 받아올 수 있다.
+app.use(function(req, res, next) {
+  // res.locals.user = req.session.user;
+  // next();
+  res.locals.status = req.session.status;
+  next(); 
+});
 
 // router
 app.use('/', indexRouter);

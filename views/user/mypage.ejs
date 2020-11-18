@@ -17,7 +17,6 @@
 </style>
 </head>
 <body>
-    <!-- <jsp:include page="../header/subpage_header.jsp"></jsp:include> -->
     <% include ./header/subpage_header.ejs %>
 	<div class="mypage">
 		<h1>내 계정</h1>
@@ -51,18 +50,27 @@
 				<div id="first-center">
 					<div id="mem">
 						<div id="email">
-							<p>ID : <%=user.email%></p>
+							<p>ID : <span class="user-email"><%=user.email%><span></span></p>
 							<br>
 						</div>
 						<div id="pwd">
 							<p>
-								비밀번호 : ******** <a href="/user/change/nick" id="change_pwd"> 비밀 번호 변경 </a>
+								비밀번호 : ********
+								<% if(!user.social){ %>
+								<a href="/user/change/nick" id="change_pwd"> 비밀 번호 변경 </a>
+								<% } %> 
 							</p>
 							<br>
 						</div>
 						<div id="phone">
 							<p>
-								닉네임 : <%= user.nick%> <a href="/user/change/nick" id="change_pwd"> 닉네임 변경 </a>
+								닉네임 : <%= user.nick%> 
+								<% if(!user.social){ %>
+									<a href="/user/change/nick" id="change_pwd"> 닉네임 변경 </a>
+								<% } %> 
+								<% if(user.social){ %>
+									<a href="/social/change/nick" id="change_pwd"> 닉네임 변경 </a>
+								<% } %> 
 							</p>
 						</div>
 					</div>
@@ -152,6 +160,23 @@
 
 		</div>
 	</div>
+	<script>
+		const email = $.trim($('.user-email').text());
+		function fn(str){
+			let res = str;
+			let reg = new RegExp(/[^0-9]/g,"");
+			let res2 ;
+			for(let i=0; i<str.length; i++){
+				if(!reg.test(str[i])){
+					res = res.replace(str[i], "*");
+				}
+			}
+    		return res;
+		}
+		$('.user-email').text(fn(email));
+
+
+	</script>
 	<% include ./footer/footer.ejs %>
 </body>
 </html>
