@@ -23,7 +23,8 @@ app.set('views',
     path.join(__dirname, 'views'),
     path.join(__dirname, 'views/user'),
     path.join(__dirname, 'views/footer'),
-    path.join(__dirname, 'views/header')
+    path.join(__dirname, 'views/header'),
+    path.join(__dirname, 'views/pay')
   ]
 );
 app.set('view engine', 'ejs');
@@ -49,6 +50,7 @@ app.use(express.static(path.join(__dirname,"public")));
 app.use(function(req, res, next) {
   // res.locals.user = req.session.user;
   // next();
+  res.locals.nick = req.session.nick;
   res.locals.status = req.session.status;
   next(); 
 });

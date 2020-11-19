@@ -23,13 +23,12 @@
 		<br>
 		<hr class="my_hr">
 		<div class="main">
-		<jsp:useBean id="now" class="java.util.Date"></jsp:useBean>
 			<section id="first">
 				<div id="first-left">
 				<% if(!user.payment){%>
 					<p>멤버십 & 결제 정보</p>
 					<button id="delete_btn">
-						<a href="/payment" id="button">이용권 구입</a>
+						<a href="/pass/pay" id="button">이용권 구입</a>
 					</button>
                 <%} %>
                     
@@ -40,9 +39,9 @@
                     <%} %>
                     <% if(!user.authority){%>
 					<h3>이용기간</h3><br>
-					<p>결제일 : <%= user.paydate %> </p>
-					<p>종료일 :  </p>
-					<p>남은기간 : </p> 
+					<p>결제일 : <span class="pay-date"><%= user.paydate %></span> </p>
+					<p>종료일 :  <span class="end-date"></span></p>
+					<p>남은기간 : <span class="use-date"></span></p> 
                     <%} %>
                 <%}  %> 
 				</div>
@@ -100,7 +99,7 @@
 
 				<div id="second-center">
 					<p>
-						
+					<span class='pass_no'><%= user.pass_no%></span>
 					</p>
 					<br>
 				</div>
@@ -120,20 +119,24 @@
 				<div id="third-center">
 					<p>
                     <%if(user.category!=null){%>
-						관심 컨텐츠 <a href="/category_add" id="change_ctn_click"> 컨텐츠 수정하기 </a>
+						관심 컨텐츠 <a href="/user/category/add" id="change_ctn_click"> 컨텐츠 수정하기 </a>
                     <%} %>
 					<%if(user.category==null){%>
-						관심 컨텐츠 <a href="/category_add" id="change_ctn_click"> 컨텐츠 추가하기 </a>
+						관심 컨텐츠 <a href="/user/category/add" id="change_ctn_click"> 컨텐츠 추가하기 </a>
 					<%}%>
 					</p>
 					<hr class="my_hr">
 					<div id="list">
 						<p>
-                        <%if(user.category!=null){%>
-							<!-- <c:forTokens items="${user.category }" delims="," var="category">
-								<a href="/searchView?search=${category }" id="change_ctn">#${category }</a>					
-							</c:forTokens>
-							<a style="color : #0073E6; float:right;" href="/category_del">카테고리 삭제</a> -->
+						<%if(user.category!=null){%>
+							<% if(typeof user.category == "string"){%>
+								<a href="/movie/search?key=<%= user.category%>" id="change_ctn">#<%=user.category%></a>
+							<% } else { %> 
+								<% for(let idx of user.category){%>
+									<a href="/movie/search?key=<%= idx%>" id="change_ctn">#<%=idx%></a>					
+								<% } %>
+							<% } %>  
+							<a style="color : #0073E6; float:right;" href="/user/category/remove">카테고리 삭제</a>
                         <%}%>
                         <%if(user.category==null){%>
 							관심있는 카테고리가 존재하지 않습니다.
@@ -161,6 +164,39 @@
 		</div>
 	</div>
 	<script>
+		// 이용권 해제일 구하기
+		const paydate = $('.pay-date').text();
+		function getFormatDate(date){
+			var year = date.getFullYear();              //yyyy
+			var month = (1 + date.getMonth());          //M
+			month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
+			var day = date.getDate();                   //d
+			day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
+			return  year + '/' + month + '/' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
+		}
+		function getEndDate(date){
+			let dateList = date.split("/");
+			let enddate = new Date(dateList[0],dateList[1]-1,dateList[2]);
+			enddate.setDate(enddate.getDate()+30);
+			enddate = getFormatDate(enddate);
+			return enddate;
+		}
+		$('.end-date').text(getEndDate(paydate));
+
+		// 남은 이용기간 구하기
+		function getUseDate(startDate, endDate){
+			console.log(endDate);
+			let date1 = startDate.split("/");
+			let date2 = endDate.split("/");
+			let sDate = new Date(date1[0], date1[1], date1[2]);
+			let eDate = new Date(date2[0], date2[1], date2[2]);
+			let diffDay = ((eDate.getTime() - sDate.getTime()) / (1000 * 60 * 60 * 24))-1;
+			return diffDay;
+		}
+		$('.use-date').text(getUseDate(paydate,$('.end-date').text()));
+		
+		
+		// 아이디 마스킹
 		const email = $.trim($('.user-email').text());
 		function fn(str){
 			let res = str;
@@ -174,7 +210,6 @@
     		return res;
 		}
 		$('.user-email').text(fn(email));
-
 
 	</script>
 	<% include ./footer/footer.ejs %>
