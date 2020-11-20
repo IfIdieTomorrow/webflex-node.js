@@ -1,0 +1,142 @@
+@charset "UTF-8";
+
+@font-face {
+   font-family: 'NanumSquareRound';
+   src:
+      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff')
+      format('woff');
+   font-weight: normal;
+   font-style: normal;
+   font-size: 1.0rem;
+}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,a,button,form,fieldset,p,blockquote{margin:0;padding:0}
+img, fieldset {border:none}
+body, dl, dt, dd, th, td, div, p, a, button, table,li, form, fieldset,legend, input, button, textarea, select {}
+body, dl, dt, dd, th, td, div, p, a, button, table,li {font-size:12px;}
+form, fieldset,legend, input, button, textarea, select {font-size:13px}
+ul, ol {list-style:none}
+table {border-collapse:collapse}
+input, textarea {display:inline-block;font-size:13px;vertical-align:middle}
+textarea {resize:none} 
+address, em {font-style:normal}
+th, td {padding:0;vertical-align:top;text-align:left;font-weight:normal}
+
+body{
+   background: #f3f3f3;
+   position: relative;
+   background-size: 100%;
+}
+.p1{
+   margin : 320px 0px;
+   margin-left: 7%;
+}
+
+.p1_1{
+   margin: 0% 35%;
+   width : 550px;
+}
+
+.p1_2{
+   margin : 200px 0px;
+}
+
+h1{
+   font-size: 35px;
+}
+
+.pwd1{
+   display: block;
+   width: auto;
+   vertical-align: top;
+   clear: both;
+   margin-bottom: 15px;
+   position: relative;
+   height: 48px;
+}
+
+.pwd1 label{
+   font-size: 16px;
+   position: absolute;
+   top: 50%;
+   left: 10px;
+   color: #8c8c8c;
+   margin-top: -10px;
+}
+
+.pwd1 input:focus+.Label{
+   top: 12px;
+   font-size: 11px;
+}
+
+.pw1{
+
+   height: 48px;
+   padding: 0px 10px 0;
+   width: 100%;
+   box-sizing: border-box;
+   font-size: 16px;
+   border: solid 1px #8c8c8c;
+   border-radius: 2px;
+   display: block;
+   appearance: none;
+   color: #000;
+}
+
+.pp{
+   color: #0080ff;
+}
+
+.remember label{
+   color: #333;
+   position: relative;
+   display: block;
+   line-height: 1.2;
+   padding: 6px 0;
+   float: left;
+   margin-left: 15px;
+}
+
+#remember{
+   float: left;
+   width: 25px;
+   height: 25px;
+}
+
+.btn{
+   width: 100%;
+   clear: both;
+   padding-top: 20px;
+   height: 100px;
+}
+
+.btn button{
+   margin: 0 10px 0 0;
+   display: inline-block;
+   font-size: 13px;
+   padding: .75rem 17.33333333px;
+   min-width: 98px;
+   min-height: 37px;
+   margin-right: .5rem;
+   padding-left: 1rem;
+   padding-right: 1rem;
+   width: auto;
+   line-height: 1rem;
+   border: none;
+   float: left;
+}
+
+#sb1 button{
+   background-color: #0f84fa;
+   color: #fff;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+}
+
+#sb2 button{
+   color: #333;
+   background: #ccc;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+}

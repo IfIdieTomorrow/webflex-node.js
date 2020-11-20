@@ -1,9 +1,13 @@
-const { request } = require("express");
 const express = require("express");
 const router = express.Router();
 const db = require("../../bin/db");
+const bcrypt = require("bcrypt");
 
 router.get("/add", (request, response)=>{
+    if(request.session.status === undefined){
+        response.redirect("/");
+        return;
+    }
     db.query("SELECT category FROM wf_user WHERE nick = ?",[request.session.nick],(err, result)=>{
         if(err) throw err;
         let category = null;
@@ -35,6 +39,10 @@ router.post("/add", (request, response)=>{
 });
 
 router.get("/remove", (request, response)=>{
+    if(request.session.status === undefined){
+        response.redirect("/");
+        return;
+    }
     db.query("UPDATE wf_user SET category = null WHERE nick = ?",[request.session.nick], (err, result)=>{
         if(err) throw err;
         response.redirect("/user/mypage");

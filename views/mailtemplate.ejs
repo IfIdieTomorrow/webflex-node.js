@@ -1,0 +1,30 @@
+<html>
+<head>
+<style>
+div{
+    border: 0.5px solid gray;
+    text-align: center;
+    width: 50%;
+    height: 50%;
+    margin: auto;
+}
+h2{
+    border: 0.5px solid gray;
+    width: 30%;
+    margin: 30px auto;
+    padding: 10px;
+    color: #4B89DC;
+}
+</style>
+</head>
+<body>
+    <div style="border: 0.5px solid gray; text-align: center; width: 50%; height: 50%; margin: auto;">
+        <h1 style="margin-top: 30px;"><%= nick %>님!</h1>
+        <br>
+        <p style="font-size: 1.5em;">WEBFLEX 비밀번호 재설정을 위한 인증번호 입니다.</p>
+        <p style="font-size: 1.5em;">아래의 인증 번호를 입력하여 인증을 완료해주세요.</p>
+        <br>
+        <h2 style="border: 0.5px solid gray; width: 30%; margin: 30px auto; padding: 10px; color: #4B89DC;"><%= authCode %></h2>
+    </div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+@charset "UTF-8";
+
+@font-face {
+   font-family: 'NanumSquareRound';
+   src:
+      url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff')
+      format('woff');
+   font-weight: normal;
+   font-style: normal;
+   font-size: 1.0rem;
+}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,a,button,form,fieldset,p,blockquote{margin:0;padding:0}
+img, fieldset {border:none}
+body, dl, dt, dd, th, td, div, p, a, button, table,li, form, fieldset,legend, input, button, textarea, select {}
+body, dl, dt, dd, th, td, div, p, a, button, table,li {font-size:12px;}
+form, fieldset,legend, input, button, textarea, select {font-size:13px}
+ul, ol {list-style:none}
+table {border-collapse:collapse}
+input, textarea {display:inline-block;font-size:13px;vertical-align:middle}
+textarea {resize:none} 
+address, em {font-style:normal}
+th, td {padding:0;vertical-align:top;text-align:left;font-weight:normal}
+
+body {
+   position: static;
+   font-family: 'BebasNeue','NanumSquareRound';
+   background-image: url("../../images/index/new_background.jpg");
+   background-repeat: repeat;
+   background-size: auto;
+}
+
+h1{
+   font-size : 2rem;
+      text-align: center;
+   font-weight: bold;
+}
+p {
+   font-size: 1.10rem;
+   text-align: center;
+   font-weight: bold;
+}
+fieldset {
+   margin: 10% auto;
+   width: 500px;   padding:5% 5%;
+   border: none;
+   text-align: left;
+   background-color: white;
+   opacity: 80%;
+   text-align: left;
+}
+.type01 {
+   
+   font-family: 'BebasNeue','NanumSquareRound';
+   width:250px;
+   outline: none;
+   border-style: solid;
+   border-width: 0 0 0 13px;
+   padding: 13px;
+   word-break: break-all;
+   background-color: white;
+   border-color: #DB202C;
+   color: #DB202C;
+   font-size: 1.50em;
+}
+.type02 {
+   font-family: 'BebasNeue','NanumSquareRound';
+   width:auto;
+   outline: none;
+   border-style: solid;
+   border-width: 0 0 0 5px;
+   padding : 2% 1%;
+   word-break: break-all;
+   background-color: white;
+   border-color: black;
+   color: black;
+   font-size: 1.50em;
+}
+
+.type01:hover {
+   border-width: 0 0 0 13px;
+   padding: 13px;
+   background-color: white;
+   border-color: #DB202C;
+   color: #DB202C;
+   font-size: 1.50em;
+   box-shadow: 1px 1px 1px #DB202C;
+}
+.send, .check{
+   font-weight : bold;
+   margin : 1% 1%;
+   margin-right :5%;
+   float: right;
+}
+.send:hover,.check:hover {
+   font-weight : bold;
+   margin : 1% 1%;
+   margin-right :5%;
+   float: right
+}
+.send, .check, .login_btn, .main_btn, .change-btn{
+font-family: 'NanumSquareRound';
+   border-style: solid;
+   border: 150px;
+   background-color: #DB202C;
+   color: white;
+   border-radius: 5px;
+   position: left;
+   font-size: 15px;
+   font-style: bold;
+}
+.login_btn:hover,.main_btn:hover,.send:hover,.check:hover, .change-btn:hover {
+   font-family: 'NanumSquareRound';
+   background-color: white;
+   color: #db202c;
+   border-color: white;
+   border-radius: 5px;
+}
+.login_btn, .main_btn, .change-btn{
+   margin-top : 5%;
+   padding : 3% 0%;
+   block-size : 30px;
+   width:80%;
+   font-weight: bold;
+}
+.login_btn:hover,.main_btn:hover, .change-btn:hover{
+      margin-top : 5%;
+   block-size : 30px;
+   width:80%;
+   font-weight: bold;
+}
+#clk{
+   font-size: 1.25rem;
+   padding : 1%1%;
+   margin: 5% 30%
+}

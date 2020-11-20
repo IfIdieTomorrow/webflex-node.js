@@ -4,12 +4,12 @@ const db = require("../../bin/db");
 const moment = require('moment');
 
 router.get("/mypage", (request, response)=>{
-    if(request.session.nick === undefined){
+    if(request.session.status === undefined){
         response.redirect("/");
+        return;
     } else {
         db.query("SELECT * FROM wf_user WHERE nick = ?",[request.session.nick],(err, user)=>{
             if(err) throw err;
-            console.log(user[0]);
             let date = moment(user[0].paydate).format('YYYY/MM/DD');
             let category = null;
             if (user[0].category != null){
