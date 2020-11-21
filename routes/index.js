@@ -11,6 +11,8 @@ const payRouter = require("./pay/pay");
 const categoryRouter = require("./user/category");
 const EditRouter = require("./user/infoEdit");
 const mailRouter = require("./user/email");
+const boardRouter = require("./board/board");
+const imgUploadRouter = require("./board/imgUpload");
 // 파일 업로드
 const multer = require("multer");
 const storage = multer.diskStorage({
@@ -21,25 +23,32 @@ const storage = multer.diskStorage({
     cb(null, file.originalname) // 콜백함수를 통해 전송된 파일 이름 설정
   }
 });
+const upload = multer({storage : storage})
 // 메일 
 const ejs = require("ejs");
-const upload = multer({storage : storage})
 const nodemailer = require("nodemailer");
 const adminMail = require("../bin/mail_info");
+const { request } = require('express');
 const smtpTransport = nodemailer.createTransport(adminMail);
-
+//--------------------------------------------------------
 router.use("/user", loginRouter);
 router.use("/user", joinRouter);
 router.use("/user", mypageRouter);
 router.use("/user", EditRouter);
 router.use("/user/category", categoryRouter);
 router.use("/user/mail", mailRouter);
+//--------------------------------------------------------
 router.use("/api", apiRouter);
+//--------------------------------------------------------
 router.use("/auth/kakao", kakakoRouter);
 router.use("/auth/facebook", facebookRouter);
 router.use("/auth/naver" ,naverRoter);
+//--------------------------------------------------------
 router.use("/pass/pay", payRouter);
-
+//--------------------------------------------------------
+router.use("/board" , boardRouter);
+router.use("/uploadSummernoteImageFile", imgUploadRouter);
+//--------------------------------------------------------
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if(req.user){
@@ -98,5 +107,9 @@ router.post('/mail/test', async(request, response) => {
 });
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+router.get("/test", (request, response)=>{
+  response.render("noteTest")
+})
 
 module.exports = router;

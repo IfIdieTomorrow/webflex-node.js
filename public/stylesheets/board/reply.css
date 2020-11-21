@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+/* Article Reply */
+.article-reply h1 {padding:10px 20px; font-weight:normal; font-size:1.5em; background:#2d2d2d; color:#fff}
+.reply-wrap {padding:20px; border:1px solid #ddd; background:#fff}
+/* Reply Form */
+.reply-form dl.reply-guest dt {position: absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;}
+.reply-form dl.reply-guest dd {margin-bottom:10px}
+.reply-form dl.reply-guest dd input {width:100%; padding:10px 0; border:1px solid #ddd; background:#f9f9f9; color:#999; text-indent:10px;}
+.reply-form dl.reply-guest dd input:focus, .reply-form dl.reply-guest dd input:active {background:#fff; color:#111}
+.reply-form .secret label {cursor:pointer}
+.reply-form .secret input {width:24px; height:24px; margin-right:10px; vertical-align:bottom;}
+.reply-form dl.reply-write {margin-top:10px;}
+.reply-form dl.reply-write dt {position: absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;}
+.reply-form dl.reply-write dd textarea {width:100%; margin-bottom:10px; padding:10px 0; height:200px; border:1px solid #ddd; background:#f9f9f9; color:#999; text-indent:10px;}
+.reply-form dl.reply-write dd textarea:focus, .reply-form dl.reply-write dd textarea:active {background:#fff; color:#111}
+.reply-form button {display:block; width:100%; margin:10px 0 0 0; padding:10px 0; border:1px solid #ff7035; background:#ff8149; color:#fff; text-align:center;}
+
