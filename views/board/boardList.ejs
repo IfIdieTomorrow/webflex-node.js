@@ -5,8 +5,8 @@
 <title>::WEBFLEX 게시판 목록::</title>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css" />
-<link rel="stylesheet" type="text/css" href="../../stylesheets/board/board.css" />
-<link rel="icon" type="image/png" sizes="16x16" href="../../images/index/new logo.png">
+<link rel="stylesheet" type="text/css" href="../../../stylesheets/board/board.css" />
+<link rel="icon" type="image/png" sizes="16x16" href="../../../images/index/new logo.png">
 <style>
 #a{color: black;}
 
@@ -123,7 +123,7 @@
 		</tr>
 	</tbody>
 <% } else { %> 
-	<% for(let item of board){ %> 
+	<% for(let item of board.board){ %> 
 	<tbody>
 		<tr>
 			<td class="num"><%= item.bno%></td>
@@ -131,7 +131,7 @@
 				<a  id="a" href="/board/cont?bno=<%= item.bno%>"><%= item.title%> </a>
 			</td>
 			<td class="txt"><%= item.writer%></td>
-			<td class="num" id="date"><%= item["date_format(writedate,'%Y / %m / %d')"]%></td>
+			<td class="num" id="date"><%= item["date_format(writedate, '%Y / %m / %d')"]%></td>
 			<td class="num"><%= item.hit%></td>
 		</tr>
 	</tbody>
@@ -142,46 +142,41 @@
 	<div class="page" style="display: flex; justify-content : center;">
 	<!-- 검색 전 페이징 -->
 		
-	<% if(board.lPage<=1){ %> 
-	   	<c:if test="${page<=1}">
+	<% if(board.page<=1){ %> 
 	    	<div class="btn">
 	     	&lt;
 	     	</div>
-	   	</c:if>
 	<% } %>
-	    <c:if test="${page>1}">
+	<% if(board.page>1) { %> 
 	    <div class="btn">
-	     <a id="board_list" href="./board_list?page=${page-1}">&lt;</a>
-	      </div>
-	    </c:if>
-	   
+	     <a id="board_list" href="/board/list/<%= Number(board.page)-1%>">&lt;</a>
+	    </div>
+	<% } %> 
 	<!-- 현재 쪽번호 출력 -->
-	    <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
-	     <c:if test="${a == page}"><!-- 현재 페이지가 선택 되었으면 -->
+	<% for(var i = board.startPage; i<=board.endPage; i++){ %> 
+		<% if(i == board.page){ %> <!-- 현재 페이지가 선택 되었으면 -->
 	      <div class="no_on">
-	       <b>${a}</b>
+	       <b><%= i%></b>
 	      </div>
-	     </c:if>
-	     <c:if test="${a != page}"><!-- 현재 페이지가 선택되지 않았으면 -->
-	      <div class="no">
-	     <a id="board_list" href="./board_list?page=${a}">
-	      ${a}
-	     </a>
-	      </div>
-	     </c:if>
-	    </c:forEach>
-	    
-	    <c:if test="${page >= maxpage}">
+	    <% } else {%> <!-- 현재 페이지가 선택되지 않았으면 -->
+			<div class="no">
+			<a id="board_list" href="/board/list/<%= i%>">
+			<%= i%>
+			</a>
+			</div>
+	    <% } %> 
+	<% } %> 
+		
+	<% if(board.page >= board.max){ %> 
 	    <div class="btn">
 	   	 &gt;
 	   	</div>
-	    </c:if>
-	    
-	    <c:if test="${page < maxpage}">
+	<% } %> 
+	<% if(board.page < board.max){ %> 
 	    <div class="btn">
-	    	<a id="board_list" class="end" href="./board_list?page=${page+1}">&gt;</a>
+	    	<a id="board_list" class="end" href="/board/list/<%= Number(board.page)+1%>">&gt;</a>
 	     </div>
-	    </c:if>
+	<% } %> 
 	</div>
 <div>
 </div>
