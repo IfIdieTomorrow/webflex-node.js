@@ -14,6 +14,7 @@ const mailRouter = require("./user/email");
 const boardRouter = require("./board/board");
 const imgUploadRouter = require("./board/imgUpload");
 const replyRouter = require("./board/reply/reply");
+const noticeRouter = require("./notice/notice");
 // 파일 업로드
 const multer = require("multer");
 const storage = multer.diskStorage({
@@ -51,6 +52,8 @@ router.use("/board" , boardRouter);
 router.use("/uploadSummernoteImageFile", imgUploadRouter);
 router.use("/board/reply", replyRouter);
 //--------------------------------------------------------
+router.use("/notice", noticeRouter);
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if(req.user){

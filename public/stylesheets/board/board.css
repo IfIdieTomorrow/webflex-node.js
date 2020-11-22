@@ -89,9 +89,9 @@ body {
 
 /*page*/
 .page {position:relative;  padding: 30px 0;}
-.page .btn {line-height:30px left; border:1px solid #ddd; background-color:#fafafa; color:#999; text-align:center; width:30px; height:30px; padding-top:3px; margin:0 5px;}
-.page .no {line-height:30px  left; border:1px solid #ddd; background-color:#fff; color:#999; text-align:center; width:30px; height:30px; padding-top:3px; margin:0 5px;}
-.page .no_on {line-height: 30px left; border:1px solid #555; background-color:#fff; color:#333; text-align:center; width:30px; height:30px; padding-top:3px; margin:0 5px;}
+.page .btn {line-height:30px left; border:1px solid #ddd; background-color:#fafafa; color:#999; text-align:center; width:30px; height:30px; padding-top:3px; margin:0 5px; display: flex; justify-content: center; align-items: center;}
+.page .no {line-height:30px  left; border:1px solid #ddd; background-color:#fff; color:#999; text-align:center; width:30px; height:30px; padding-top:3px; margin:0 5px; display: flex; justify-content: center; align-items: center;}
+.page .no_on {line-height: 30px left; border:1px solid #555; background-color:#fff; color:#333; text-align:center; width:30px; height:30px; padding-top:3px; margin:0 5px; display: flex; justify-content: center; align-items: center;}
 /*help END*/
 
 

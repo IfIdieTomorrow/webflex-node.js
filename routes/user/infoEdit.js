@@ -13,7 +13,7 @@ router.get("/local/nick/update", (request, response)=>{
     response.render("localNickChange");
 });
 
-router.post("/local/nick/update", (request, response)=>{
+router.post("/local/nick/update", async(request, response)=>{
     const nick = request.body.nick;
     const password = request.body.password;
     db.query("SELECT * FROM wf_user WHERE nick = ?",[nick],(err, user)=>{
@@ -30,14 +30,19 @@ router.post("/local/nick/update", (request, response)=>{
                     if(flag){
                         db.query("UPDATE wf_user SET nick = ? WHERE nick = ?",[nick, request.session.nick],(err, user)=>{
                             if(err) throw err;
-                            request.session.save(()=>{
-                                request.user.nick = nick;
-                                request.session.nick = nick;
-                                response.status(200).json({
-                                    result : "OK"
-                                });
-                            })
-                            
+                            db.query("UPDATE wf_board SET writer = ? WHERE writer = ?",[nick,request.session.nick],(err, board)=>{
+                                if(err) throw err;
+                                db.query("UPDATE wf_reply SET writer = ? WHERE writer = ?",[nick, request.session.nick],(err, reply)=>{
+                                    if(err) throw err;
+                                    request.session.save(()=>{
+                                        request.user.nick = nick;
+                                        request.session.nick = nick;
+                                        response.status(200).json({
+                                            result : "OK"
+                                        });
+                                    })
+                                })
+                            });  
                         });
                     } else {
                         response.status(200).json({
@@ -70,14 +75,20 @@ router.post("/social/nick/update", (request, response)=>{
         } else {
             db.query("UPDATE wf_user SET nick = ? WHERE nick = ?",[nick, request.session.nick],(err, user)=>{
                 if(err) throw err;
-                request.session.save(()=>{
-                    request.user.nick = nick;
-                    request.session.nick = nick;
-                    response.status(200).json({
-                        result : "OK"
-                    });
-                })
-            })
+                db.query("UPDATE wf_board SET writer = ? WHERE writer = ?",[nick,request.session.nick],(err, board)=>{
+                    if(err) throw err;
+                    db.query("UPDATE wf_reply SET writer = ? WHERE writer = ?",[nick, request.session.nick],(err, reply)=>{
+                        if(err) throw err;
+                        request.session.save(()=>{
+                            request.user.nick = nick;
+                            request.session.nick = nick;
+                            response.status(200).json({
+                                result : "OK"
+                            });
+                        })
+                    })
+                });  
+            });
         }
     });
 });

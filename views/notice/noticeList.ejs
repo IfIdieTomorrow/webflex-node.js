@@ -93,17 +93,14 @@
 <div class="title" style="margin-bottom:0px;">고객게시판</div>
 
 <div class="sub_tab" width="1060px;" style="overflow:hidden; margin:0 auto; text-align:center;">
-	<div class="sub_tab_menu"><a href="/notice/list">공지사항</a></div>
-	<div class="sub_tab_menu on"><a href="/board/list">자유게시판</a></div>
+	<div class="sub_tab_menu on"><a href="/notice/list">공지사항</a></div>
+	<div class="sub_tab_menu"><a href="/board/list">자유게시판</a></div>
 	<div class="sub_tab_menu"><a href="/help/FAQ">FAQ</a></div>
 	<div class="sub_tab_menu"><a href="/help/news">WEBFELX NEWS</a></div>
 </div>
 <br>
 <br>
-<% if(typeof status == 'undefined') {%> 
-<% } else {%>
-	<button onclick="location.href='/board/write';" class="write_btn">글쓰기</button>
-<% } %> 
+
 <div id="sub" style="width:1060px; padding:50px 0; margin:0 auto;">
 	<table class="boardlist">
 <thead>
@@ -116,22 +113,22 @@
 	</tr>
 </thead>
 
-<%if(typeof board == 'undefined') { %>
+<%if(typeof notice == 'undefined') { %>
 	<tbody>
 		<tr>
 			<th colspan="5">게시물 내용이 존재하지 않습니다.</th>
 		</tr>
 	</tbody>
 <% } else { %> 
-	<% for(let item of board.board){ %> 
+	<% for(let item of notice.notice){ %> 
 	<tbody>
 		<tr>
-			<td class="num"><%= item.bno%></td>
+			<td class="num"><%= item.nno%></td>
 			<td class="subject">
-				<a  id="a" href="/board/cont?bno=<%= item.bno%>"><%= item.title%> </a>
+				<a  id="a" href="/notice/cont?nno=<%= item.nno%>"><%= item.title%> </a>
 			</td>
 			<td class="txt"><%= item.writer%></td>
-			<td class="num" id="date"><%= item["date_format(writedate, '%Y / %m / %d')"]%></td>
+			<td class="num" id="date"><%= item["date_format(noticedate, '%Y / %m / %d')"]%></td>
 			<td class="num"><%= item.hit%></td>
 		</tr>
 	</tbody>
@@ -142,39 +139,39 @@
 	<div class="page" style="display: flex; justify-content : center;">
 	<!-- 검색 전 페이징 -->
 		
-	<% if(board.page<=1){ %> 
+	<% if(notice.page<=1){ %> 
 	    	<div class="btn">
 	     	&lt;
 	     	</div>
 	<% } %>
-	<% if(board.page>1) { %> 
+	<% if(notice.page>1) { %> 
 	    <div class="btn">
-	     <a id="board_list" href="/board/list/<%= Number(board.page)-1%>">&lt;</a>
+	     <a id="board_list" href="/notice/list/<%= Number(notice.page)-1%>">&lt;</a>
 	    </div>
 	<% } %> 
 	<!-- 현재 쪽번호 출력 -->
-	<% for(var i = board.startPage; i<=board.endPage; i++){ %> 
-		<% if(i == board.page){ %> <!-- 현재 페이지가 선택 되었으면 -->
+	<% for(var i = notice.startPage; i<=notice.endPage; i++){ %> 
+		<% if(i == notice.page){ %> <!-- 현재 페이지가 선택 되었으면 -->
 	      <div class="no_on">
 	       <b><%= i%></b>
 	      </div>
 	    <% } else {%> <!-- 현재 페이지가 선택되지 않았으면 -->
 			<div class="no">
-			<a id="board_list" href="/board/list/<%= i%>">
+			<a id="board_list" href="/notice/list/<%= i%>">
 			<%= i%>
 			</a>
 			</div>
 	    <% } %> 
 	<% } %> 
 		
-	<% if(board.page >= board.totalPage){ %> 
+	<% if(notice.page >= notice.totalPage){ %> 
 	    <div class="btn">
 	   	 &gt;
 	   	</div>
 	<% } %> 
-	<% if(board.page < board.totalPage){ %> 
+	<% if(notice.page < notice.totalPage){ %> 
 	    <div class="btn">
-	    	<a id="board_list" class="end" href="/board/list/<%= Number(board.page)+1%>">&gt;</a>
+	    	<a id="board_list" class="end" href="/notice/list/<%= Number(notice.page)+1%>">&gt;</a>
 	     </div>
 	<% } %> 
 	</div>

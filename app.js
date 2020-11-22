@@ -25,7 +25,8 @@ app.set('views',
     path.join(__dirname, 'views/footer'),
     path.join(__dirname, 'views/header'),
     path.join(__dirname, 'views/pay'),
-    path.join(__dirname, "views/board")
+    path.join(__dirname, "views/board"),
+    path.join(__dirname, "views/notice")
   ]
 );
 app.set('view engine', 'ejs');
@@ -53,6 +54,7 @@ app.use(function(req, res, next) {
   // next();
   res.locals.nick = req.session.nick;
   res.locals.status = req.session.status;
+  res.locals.authority = req.session.authority
   next(); 
 });
 
