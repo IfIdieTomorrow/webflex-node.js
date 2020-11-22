@@ -13,6 +13,7 @@ const EditRouter = require("./user/infoEdit");
 const mailRouter = require("./user/email");
 const boardRouter = require("./board/board");
 const imgUploadRouter = require("./board/imgUpload");
+const replyRouter = require("./board/reply/reply");
 // 파일 업로드
 const multer = require("multer");
 const storage = multer.diskStorage({
@@ -48,6 +49,7 @@ router.use("/pass/pay", payRouter);
 //--------------------------------------------------------
 router.use("/board" , boardRouter);
 router.use("/uploadSummernoteImageFile", imgUploadRouter);
+router.use("/board/reply", replyRouter);
 //--------------------------------------------------------
 /* GET home page. */
 router.get('/', function(req, res, next) {

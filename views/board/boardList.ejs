@@ -5,8 +5,8 @@
 <title>::WEBFLEX 게시판 목록::</title>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css" />
-<link rel="stylesheet" type="text/css" href="../stylesheets/board/board.css" />
-<link rel="icon" type="image/png" sizes="16x16" href="../images/index/new logo.png">
+<link rel="stylesheet" type="text/css" href="../../stylesheets/board/board.css" />
+<link rel="icon" type="image/png" sizes="16x16" href="../../images/index/new logo.png">
 <style>
 #a{color: black;}
 
@@ -86,7 +86,7 @@
 </style>
 </head>
 <body>
-<% include ./header/subpage_header.ejs %>
+<% include ./header/edit_header.ejs %>
 <!-- Notice -->
 <div id="sub">
 
@@ -141,12 +141,14 @@
 
 	<div class="page" style="display: flex; justify-content : center;">
 	<!-- 검색 전 페이징 -->
-	   <c:if test="${page<=1}">
-	    <div class="btn">
-	     &lt;
-	     </div>
-	   </c:if>
-	    
+		
+	<% if(board.lPage<=1){ %> 
+	   	<c:if test="${page<=1}">
+	    	<div class="btn">
+	     	&lt;
+	     	</div>
+	   	</c:if>
+	<% } %>
 	    <c:if test="${page>1}">
 	    <div class="btn">
 	     <a id="board_list" href="./board_list?page=${page-1}">&lt;</a>

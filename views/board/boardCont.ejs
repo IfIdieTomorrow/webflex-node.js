@@ -164,7 +164,7 @@ font{
 	<% } else {%>
 	<div class="article-reply">
     <s_rp>
-        <h1><s_rp_count><strong>${reply_cnt}</strong></s_rp_count> Comments</h1>
+        <h1><s_rp_count><strong><%= cnt%></strong></s_rp_count> Comments</h1>
         <div class="reply-wrap">
             <s_rp_input_form>
                 <div class="reply-form">
@@ -189,29 +189,22 @@ font{
 <script type="text/javascript">
 //댓글 입력
 function reply_check() {
-	var cont = $.trim($('#reply_cont').val());
-	var bno = ${board.board_no};
-	var email = "${sessionScope.id}";
+	let cont = $.trim($('#reply_cont').val());
+	let bno = '<%= board.bno%>'
 	if(cont == ""){
 		alert('내용을 입력하세요.');
 		$("#reply_cont").val('').focus();
 		return false;
 	}else{
 		$.ajax({
-			url : "/board/replies",
+			url : "/board/reply/add",
 			type : "post",
-			headers: {
-				"Content-Type" : "application/json",
-				"X-HTTP-Method-Override" : "POST"
-			}, 
-			dataType : 'text', 
-			data: JSON.stringify({
-				board_no:bno,
-				reply_cont:cont,
-				email : email
-			}),
-			success : function(result) {
-				if(result == 'SUCCESS'){
+			data: {
+				bno:bno,
+				cont:cont,
+			},
+			success : function(data) {
+				if(data.result == 'OK'){
 					alert("댓글이 등록되었습니다!");
 					location.reload();
 				}
@@ -227,89 +220,31 @@ function reply_check() {
 	
 	<!-- 댓글 목록 -->
 	<div id="replyList">
-	<c:if test="${!empty reply }">
-		<c:forEach var="r" items="${reply }">
-			<div class="reply" id="rc${r.reply_no }" style="margin-top: 20px;">
-				<input type='hidden' value="${r.reply_no }" id="reply_no${r.reply_no}">
-				<font size='4' color='black'>${r.reply_writer }</font><br><br>
-		        <font size='3.5' color='black' id="rp_cont${r.reply_no}">${r.reply_cont }</font>
-		        <span class='r_span'>DATE : ${r.reply_date }<br>
-		        <c:if test="${r.reply_writer == sessionScope.nick}">
-		        	<button class='r_edit' onclick='edit_check(${r.reply_no},"${r.reply_cont }","${r.reply_writer }");'>댓글 수정</button>&nbsp;&nbsp;&nbsp;
-		        	<button class='r_del' onclick='del_check(${r.reply_no});'>댓글 삭제</button>
-		        </c:if>
+	<% if(reply) { %> 
+		<% for(let re of reply) {%> 
+			<div class="reply" id="rc<%=re.rno%>" style="margin-top: 20px;">
+				<input type='hidden' value="<%=re.rno%>" id="reply_no<%=re.rno%>">
+				<font size='4' color='black'><%=re.writer%></font><br><br>
+		        <font size='3.5' color='black' id="rp_cont<%=re.rno%>"><%=re.cont%></font>
+		        <span class='r_span'>DATE : <%= re["date_format(replydate,'%Y / %m / %d')"]  %> <br>
+		        <% if(nick == re.writer){%>
+		        	<button class='r_edit' onclick='edit_check("<%=re.rno%>","<%=re.cont%>","<%=re.writer%>");'>댓글 수정</button>&nbsp;&nbsp;&nbsp;
+		        	<button class='r_del' onclick='del_check("<%=re.rno%>");'>댓글 삭제</button>
+				<% } %> 
 		        </span>
 			</div>
 			<script>
-			//댓글 삭제
-			function del_check(reply_no){
-				$.ajax({
-					type: "delete",
-					url: "/board/replies/del/"+reply_no,
-					headers: {
-						"Content-Type" : "application/json",
-						"X-HTTP-Method-Override" : "DELETE"
-					},
-					dataType: "text",
-					success: function(data) {
-						if($.trim(data) == "SUCCESS"){
-							alert('댓글이 삭제되었습니다.');
-							location.reload();
-						}
-					},
-					error : function() {
-						alert('오류발생!');
-					}
-				});
-			}
-		
-			
-			function edit_check(no,cont,writer) {
-				var htmls = "";
-				htmls += "<div class='reply-form'><fieldset><legend class='sr-only'>"+writer+"</legend><br>";
-				htmls += "<dl class='reply-write'><dt><label for='[##_rp_input_comment_##]' class='lab_write screen_out'>내용</label></dt>";
-				htmls += "<dd><textarea name='reply_cont' id='reply_cont"+no+"' placeholder='수정하실 댓글을 입력해주세요'>"+cont+"</textarea></dd></dl>";
-				htmls += "<button style='float: left; width:50%;' class='reply-btn' onclick='reply_edit("+no+");'><i class='fa fa-send'></i>수정하기</button><button style='float: left; width:50%;' onclick='location.reload();'>취소</button>";
-				htmls += "</fieldset></div>";
-				$('#rc'+no).replaceWith(htmls);
-			}
 			
 			</script>
 			<script type="text/javascript">
-			function reply_edit(no) {
-				var reply_no = "${r.reply_no}";
-				var reply_cont = $('#reply_cont'+no).val();
-				$.ajax({
-					type : "POST",
-					url: "/board/replies/edit",
-					headers: {
-						"Content-Type" : "application/json",
-						"X-HTTP-Method-Override" : "POST"
-					},
-					data: JSON.stringify({
-						reply_no : no,
-						reply_cont : reply_cont
-					}),
-					dataType: "text",
-					success: function(data) {
-						if($.trim(data) == "SUCCESS"){
-							alert('댓글이 수정되었습니다!');
-							location.reload();
-						}
-					},
-					error: function() {
-						alert('오류 발생');	
-					}
-				});
-			}
+			
 			</script>
-		</c:forEach>
-	</c:if>
-	<c:if test="${empty reply }">
+		<% } %> 
+	<%} else { %>
 		<div class="reply">
 		<font size="4" color="black" style="margin-left: auto; margin-right: auto; display: flex;" >댓글이 존재하지 않습니다.</font>
 		</div>
-	</c:if>
+	<% } %> 
 	</div>
 	
 	<div class="form"></div>
@@ -336,6 +271,69 @@ function board_del() {
 		}
 	})
 }
+
+//댓글 삭제
+function del_check(reply_no){
+	console.log(reply_no);
+	$.ajax({
+		type: "delete",
+		url: "/board/reply/delete",
+		data: {
+			rno : reply_no
+		},
+		// headers: {
+		// 	"Content-Type" : "application/json",
+		// 	"X-HTTP-Method-Override" : "DELETE"
+		// },
+		success: function(data) {
+			if($.trim(data.result) == "OK"){
+				alert('댓글이 삭제되었습니다.');
+				location.reload();
+			}
+		},
+		error : function() {
+			alert('오류발생!');
+		}
+	});
+}
+
+// 댓글 수정화면
+function edit_check(no,cont,writer) {
+	let htmls = "";
+	htmls += "<div class='reply-form'><fieldset><legend class='sr-only'>"+writer+"</legend><br>";
+	htmls += "<dl class='reply-write'><dt><label for='[##_rp_input_comment_##]' class='lab_write screen_out'>내용</label></dt>";
+	htmls += "<dd><textarea name='reply_cont' id='reply_cont"+no+"' placeholder='수정하실 댓글을 입력해주세요'>"+cont+"</textarea></dd></dl>";
+	htmls += "<button style='float: left; width:50%;' class='reply-btn' onclick='reply_edit("+no+");'><i class='fa fa-send'></i>수정하기</button><button style='float: left; width:50%;' onclick='location.reload();'>취소</button>";
+	htmls += "</fieldset></div>";
+	$('#rc'+no).replaceWith(htmls);
+}
+
+// 댓글 수정
+function reply_edit(no) {
+	let reply_cont = $('#reply_cont'+no).val();
+	$.ajax({
+		type : "PUT",
+		url: "/board/reply/edit",
+		// headers: {
+		// 	"Content-Type" : "application/json",
+		// 	"X-HTTP-Method-Override" : "POST"
+		// },
+		data: {
+			rno : no,
+			cont : reply_cont
+		},
+		success: function(data) {
+			if($.trim(data.result) == "OK"){
+				alert('댓글이 수정되었습니다!');
+				location.reload();
+			}
+		},
+		error: function() {
+			alert('오류 발생');	
+		}
+	});
+}
+		
 </script>
 </body>
 </html>
