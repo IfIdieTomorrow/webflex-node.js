@@ -89,9 +89,12 @@ router.delete("/delete", (request, response)=>{
     let bno = request.body.bno;
     db.query("DELETE FROM wf_board WHERE bno = ?",[bno],(err, result)=>{
         if(err) throw err;
-        response.status(200).json({
-            result : "OK"
-        })
+        db.query("DELETE FROM wf_reply WHERE bno = ?",[bno],(err, result)=>{
+            if(err) throw err;
+            response.status(200).json({
+                result : "OK"
+            })
+        });
     });
 });
 
@@ -128,6 +131,7 @@ router.get('/list/:page',(request,response)=>{
                     totalPage: totalPage,
                     max: max
                 };
+                console.log(datas);
                 response.render("boardList",{board:datas})
             });
         });

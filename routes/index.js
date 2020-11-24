@@ -15,6 +15,7 @@ const boardRouter = require("./board/board");
 const imgUploadRouter = require("./board/imgUpload");
 const replyRouter = require("./board/reply/reply");
 const noticeRouter = require("./notice/notice");
+const signOutRouter = require("./user/signout");
 // 파일 업로드
 const multer = require("multer");
 const storage = multer.diskStorage({
@@ -39,6 +40,7 @@ router.use("/user", mypageRouter);
 router.use("/user", EditRouter);
 router.use("/user/category", categoryRouter);
 router.use("/user/mail", mailRouter);
+router.use("/user/signout", signOutRouter);
 //--------------------------------------------------------
 router.use("/api", apiRouter);
 //--------------------------------------------------------
@@ -53,6 +55,7 @@ router.use("/uploadSummernoteImageFile", imgUploadRouter);
 router.use("/board/reply", replyRouter);
 //--------------------------------------------------------
 router.use("/notice", noticeRouter);
+//--------------------------------------------------------
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

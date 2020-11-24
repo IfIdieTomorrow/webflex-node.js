@@ -56,4 +56,87 @@ router.get("/cont", (request, response)=>{
     });
 });
 
-module.exports = router;
+// 글 수정화면
+router.get("/edit", (request, response)=>{
+    if(request.session.status === undefined){
+        response.redirect("/");
+        return;
+    } else if(!request.session.authority){
+        response.redirect("/user/mypage");
+        return;
+    }
+    db.query("SELECT nno,title, writer, cont, hit, date_format(noticedate,'%Y / %m / %d') FROM wf_notice WHERE nno = ?",[request.query.nno],(err, notice)=>{
+        if(err) throw err;
+        response.render("noticeEdit",{notice:notice[0]});
+    });
+});
+
+// 글 수정
+router.post("/edit", (request, response)=>{
+    if(request.session.status === undefined){
+        response.redirect("/");
+        return;
+    } else if(!request.session.authority){
+        response.redirect("/user/mypage");
+        return;
+    }
+    const nno = request.body.nno;
+    const title = request.body.title;
+    const cont = request.body.cont;
+    db.query("UPDATE wf_notice SET title = ? , cont = ? WHERE nno=?",[title,cont,nno],(err, result)=>{
+        if(err) throw err;
+        response.status(200).json({
+            result : "OK"
+        });
+    });
+});
+
+// 글 삭제
+router.delete("/delete", (request, response)=>{
+    if(request.session.status === undefined){
+        response.redirect("/");
+        return;
+    } else if(!request.session.authority){
+        response.redirect("/user/mypage");
+        return;
+    }
+    let nno = request.body.nno;
+    db.query("DELETE FROM wf_notice WHERE nno = ?",[nno],(err, result)=>{
+        if(err) throw err;
+        response.status(200).json({
+            result : "OK"
+        })
+    });
+});
+
+router.get("/write" , (request, response)=>{
+    if(request.session.status === undefined){
+        response.redirect("/");
+        return;
+    } else if(!request.session.authority){
+        response.redirect("/user/mypage");
+        return;
+    }
+    response.render("noticeWrite")
+});
+
+router.post("/write", (request, response)=>{
+    if(request.session.status === undefined){
+        response.redirect("/");
+        return;
+    } else if(!request.session.authority){
+        response.redirect("/user/mypage");
+        return;
+    }
+    const title = request.body.title;
+    const cont = request.body.cont;
+    db.query("INSERT INTO wf_notice(title,writer,cont,noticedate) VALUES(?,?,?,now())",[title, request.session.nick, cont],(err, result)=>{
+        if(err) throw err;
+        response.status(200).json({
+            result : "OK"
+        })
+    });
+});
+
+
+module.exports = router;  

@@ -99,7 +99,7 @@ font{
 	<table class="boardview_head">
 		<tbody><tr>
             <th><%= notice.title%></th>
-            <td style="text-align:right;"><span class="name">by <%= notice.writer %></span> <span class="line">|</span> <span class="name">Date</span> <span class="date"><%=notice["date_format(writedate,'%Y / %m / %d')"]%></span></td>
+            <td style="text-align:right;"><span class="name">by <%= notice.writer %></span> <span class="line">|</span> <span class="name">Date</span> <span class="date"><%=notice["date_format(noticedate,'%Y / %m / %d')"]%></span></td>
         </tr>
         <tr>
             <td height="10" colspan="2"></td>
@@ -131,17 +131,17 @@ font{
 		<% } else {%>
 			<% if(authority){ %> 
 				<div class="w_btn">
-					<button class="list_btn" onclick="board_del();">
+					<button class="list_btn" onclick="notice_del();">
 						<div class="btn">삭제</div>
 					</button>
 				</div>
 				<div class="w_btn">
-					<button class="list_btn" onclick="location.href='/board/edit?bno=<%= board.bno%>';">
+					<button class="list_btn" onclick="location.href='/notice/edit?nno=<%= notice.nno%>';">
 						<div class="btn">수정</div>
 					</button>
 				</div>
 				<div class="w_btn">
-					<button class="list_btn" onclick="location.href='/board/write';">
+					<button class="list_btn" onclick="location.href='/notice/write';">
 						<div class="btn">글쓰기</div>
 					</button>
 				</div>
@@ -154,5 +154,26 @@ font{
 	</table>
 	
 	<div class="form"></div>
+<script>
+	function notice_del() {
+	let noticeNo = '<%= notice.nno%>';
+	$.ajax({
+		url : "/notice/delete",
+		type : "delete",
+		data : {
+			nno : noticeNo
+		},
+		success : function(data){
+			if(data.result == "OK"){
+				alert("공지사항이 삭제되었습니다.");
+				location.href="/notice/list";
+			}
+		},
+		error : function(){
+			alert("에러발생");
+		}
+	})
+}
+</script>
 </body>
 </html>

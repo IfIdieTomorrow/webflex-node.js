@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'NanumSquareRound';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-size: 1.0rem;
+}
+/*reset*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,a,button,form,fieldset,p,blockquote{margin:0;padding:0}
+img, fieldset {border:none}
+body, dl, dt, dd, th, td, div, p, a, button, table,li {font-size:16px}
+form, fieldset,legend, input, button, textarea, select {font-size:15px}
+ul, ol {list-style:none}
+table {border-collapse:collapse}
+input, textarea {display:inline-block;font-size:13px;vertical-align:middle}
+textarea {resize:none} 
+address, em {font-style:normal}
+th, td {padding:0;vertical-align:top;text-align:left;font-weight:normal}
+
+
+html{
+	font-family: 'BebasNeue', 'NanumSquareRound';
+}
+body {
+	background-color: #ECE8E8;
+}
+h1,h3{
+	font-weight: bold;
+}
+#ask {
+	margin-top : 10%;
+	text-align: center;
+
+}
+
+#ask_box {
+	text-align: left;
+	padding : 0% 8%;
+	display : inline-block;
+	background-color: white;
+	box-sizing: border-box;
+	border: 1px solid black;
+	margin : 0% 15%;
+	box-sizing: border-box;
+	text-decoration: bold;
+	height: 330px;
+}
+.buttons{
+text-align: center;	
+}
+button{
+	text-align : center;
+	width : 150px;
+	height :25px;
+	font-family: 'BebasNeue', 'NanumSquareRound';
+	border-style : none;
+	margin-right: 10px;
+	background-color: #DB202C;
+	padding: 2px;
+	color: white;
+	border-radius: 5px;
+	font-size: 14px;
+}
+button:hover{
+	font-family: 'BebasNeue', 'NanumSquareRound';
+	padding: 2px;
+	background-color: black;
+	color: white;
+	font-size: 14px;
+	cursor:pointer;
+}
+a{
+	text-decoration: none;
+}

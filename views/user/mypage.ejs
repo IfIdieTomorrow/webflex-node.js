@@ -155,9 +155,15 @@
 					<button>
 						<a href="/notice/list" id="button">공지 사항</a>
 					</button>
-					<button>
-						<a href="/sign_out" id="button">회원탈퇴</a>
-					</button>
+					<% if(user.social){ %> 
+						<button>
+							<a href="/user/signout/social" id="button">회원탈퇴</a>
+						</button>
+					<% } else {%>
+						<button>
+							<a href="/user/signout/local" id="button">회원탈퇴</a>
+						</button>
+					<% } %> 
 				</div>
 			</section>
 

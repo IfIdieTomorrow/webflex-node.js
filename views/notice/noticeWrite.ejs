@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>::WEBFLEX 게시판 글쓰기::</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css" />
+<link rel="stylesheet" type="text/css" href="../stylesheets/board/board.css" />
+<!-- include libraries(jQuery, bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css" />
+<!-- include summernote css/js-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
+<style type="text/css">
+#board_pw, #board_title{
+	margin-top: 25px;
+}
+th{
+	width: 100px;
+}
+.w_btn{
+float: right}
+</style>
+</head>
+<body>
+<header>
+<% include ./header/subpage_header.ejs %> 
+</header> 
+<div id="sub">
+<div id="sub" style="width:1060px; padding:50px 0; margin:0 auto; ">
+<!-- News Start -->
+<div id="sub">
+	<table class="boardview_head">
+		<tbody>
+			<tr>
+				<th>제목</th>
+				<td><textarea cols="22" rows="1" maxlength="10" id="board_title"></textarea></td>
+			</tr>
+		</tbody>
+	</table>
+    <table class="boardview_text">
+        <tbody>
+			<tr>
+				<td>
+					<div style="margin-bottom:20px">
+					<textarea id="summernote" class="summernote"></textarea>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td height="20"></td>
+			</tr>
+		</tbody>
+    </table>
+	<div style="width:1060px; margin:0 auto;">
+		<div class="w_btn">
+			<a href="/board/list">
+				<div class="btn">목록</div>
+			</a>
+		</div>
+		<div class="w_btn">
+			<button type="reset">
+				<div class="btn">취소</div>
+			</button>
+		</div>
+		<div class="w_btn">
+			<button onclick="board_check();">
+				<div class="btn">확인</div>
+			</button>
+		</div>
+	</div>
+</div>
+</div>
+</div> 
+<script>
+let url;
+$(document).ready(function(){
+	$('#summernote').summernote({
+		width:1030,
+		height:500,
+		callbacks: {	//여기 부분이 이미지를 첨부하는 부분
+			onImageUpload : function(files) {
+				uploadSummernoteImageFile(files[0],this);
+			}
+		}
+	});
+
+	//이미지 파일 업로드
+	function uploadSummernoteImageFile(file, editor) {
+		data = new FormData();
+		data.append("file", file);
+		$.ajax({
+			data : data,
+			type : "POST",
+			url : "/uploadSummernoteImageFile",
+			contentType : false,
+			processData : false,
+			success : function(data) {
+				console.log(data);
+            	//항상 업로드된 파일의 url이 있어야 한다.
+				$(editor).summernote('insertImage', data.url);
+				url = data.url;
+				console.log(url);
+			}
+		});
+	}
+});
+
+function board_check() {
+	if($.trim($('#board_title').val()) == ""){
+		alert('제목을 입력하세요!');
+		$('#board_title').val('').focus();
+		return false;
+	} 
+	if($.trim($('#summernote').val()) == ""){
+		alert('내용을 입력하세요!');
+		$('#summernote').focus();
+		return false;
+	}else{
+		//여기서부터 데이터베이스에 글 등록하기윙해 board_insert매핑주소에 JSON타입으로 전달
+		$.ajax({
+			type:"post",
+     		url:"/notice/write",
+      		data: {
+				title : $.trim($('#board_title').val()),
+				cont : $.trim($('#summernote').val())
+			},
+      		success:function(data){
+				if(data.result == "OK"){
+					alert("게시글이 등록되었습니다.");
+					location.href='/notice/list';
+				} else {
+					alert("게시글 등록 실패");
+				}
+			},
+			error : function(){
+				alert("오류 발생!");
+			}
+		});
+	}
+}
+</script>
+
+</body>
+</html>
