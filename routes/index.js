@@ -16,6 +16,7 @@ const imgUploadRouter = require("./board/imgUpload");
 const replyRouter = require("./board/reply/reply");
 const noticeRouter = require("./notice/notice");
 const signOutRouter = require("./user/signout");
+const movieRouter = require("./movie/movie");
 // 파일 업로드
 const multer = require("multer");
 const storage = multer.diskStorage({
@@ -55,6 +56,8 @@ router.use("/uploadSummernoteImageFile", imgUploadRouter);
 router.use("/board/reply", replyRouter);
 //--------------------------------------------------------
 router.use("/notice", noticeRouter);
+//--------------------------------------------------------
+router.use("/movie", movieRouter);
 //--------------------------------------------------------
 
 /* GET home page. */

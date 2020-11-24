@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="../stylesheets/header/main_header.css" />
+<link rel="icon" type="image/png" sizes="16x16" href="../images/index/new logo.png">
+</head>
+
+<script>
+$(document).ready(function() {
+    $('#searchOk').submit(function() {
+        if ($('#search').val() == '') {
+            return false;
+        }
+      
+        
+        
+        
+    }); // end submit()
+}); // end ready()
+</script>
+
+<body>
+	<header class="upper">
+
+		<div id="right_head">
+			<a href='/main/list'><img src="../images/index/logo_red.png" width=5% height=4%
+				id="logo" /></a>
+			<li class="sub-menu-parent" tab-index="0"><a
+				href="/user/mypage"><img src="../images/index/new logo.png"
+					width=30px height=30px></a> <img
+				src="../resources/images/mouse_over.png" width=10px height=10px
+				id="cursor">
+				<ul class="sub-menu">
+					<li><a href="/user/mypage">마이 홈</a></li>
+         			<li><hr></li>
+         			<li><a href="/notice/list">고객센터</a></li>
+          			<li><hr></li>
+          			<% if(typeof status == 'undefined'){ %> 
+						<li><a href="/user/login">로그인</a></li>
+					<% } else { %>
+						<li><a href="/user/logout">로그아웃</a></li>
+					<% } %> 
+				</ul></li>
+
+			<div id="wrap">
+				<form action="searchView" autocomplete="on" name="searchOk" id="searchOk">
+					<input id="search" name="search" type="text" placeholder="제목,사람,장르">
+					<input id="search_submit" type="submit">
+				</form>
+			</div>
+			<div id="main_category">
+				<ul id="main_ul">
+					<li><a href="/movie/list">홈</a></li>
+					<li><a href="/movie/newContents">최신 콘텐츠</a></li>
+				</ul>
+			</div>
+		</div>
+	
+	</header>
+</body>
+</html>
