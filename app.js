@@ -45,7 +45,7 @@ app.use(flash());
 app.use(logger('dev'));
 app.use(compression());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({limit : "20mb",extended : true, parameterLimit : "100000"}));
+app.use(bodyParser.urlencoded({limit : "100mb",extended : true, parameterLimit : "1000000"}));
 app.use(cookieParser());
 app.use(express.static("public"));
 // locals에 session에서 받아온 값을 저장하는 미들웨어
