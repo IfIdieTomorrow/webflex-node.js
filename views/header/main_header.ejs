@@ -5,6 +5,11 @@
 <title></title>
 <link rel="stylesheet" type="text/css" href="../stylesheets/header/main_header.css" />
 <link rel="icon" type="image/png" sizes="16x16" href="../images/index/new logo.png">
+<style>
+.cont{
+	padding: 10px;
+}
+</style>
 </head>
 
 <script>
@@ -12,11 +17,7 @@ $(document).ready(function() {
     $('#searchOk').submit(function() {
         if ($('#search').val() == '') {
             return false;
-        }
-      
-        
-        
-        
+		}
     }); // end submit()
 }); // end ready()
 </script>
@@ -25,13 +26,11 @@ $(document).ready(function() {
 	<header class="upper">
 
 		<div id="right_head">
-			<a href='/main/list'><img src="../images/index/logo_red.png" width=5% height=4%
+			<a href='/movie/list'><img src="../images/index/logo_red.png" width=5% height=4%
 				id="logo" /></a>
 			<li class="sub-menu-parent" tab-index="0"><a
 				href="/user/mypage"><img src="../images/index/new logo.png"
-					width=30px height=30px></a> <img
-				src="../resources/images/mouse_over.png" width=10px height=10px
-				id="cursor">
+					width=30px height=30px></a> 
 				<ul class="sub-menu">
 					<li><a href="/user/mypage">마이 홈</a></li>
          			<li><hr></li>
@@ -52,8 +51,8 @@ $(document).ready(function() {
 			</div>
 			<div id="main_category">
 				<ul id="main_ul">
-					<li><a href="/movie/list">홈</a></li>
-					<li><a href="/movie/newContents">최신 콘텐츠</a></li>
+					<li><a href="/movie/list" class="cont">홈</a></li>
+					<li><a href="/movie/newContents" class="cont">최신 콘텐츠</a></li>
 				</ul>
 			</div>
 		</div>

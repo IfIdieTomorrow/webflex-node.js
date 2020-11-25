@@ -1,8 +1,6 @@
 @charset "UTF-8";
 
 @font-face {
-	font-family: 'BebasNeue';
-	src: url("../images/BebasNeue.otf");
 	font-family: 'NanumSquareRound';
 	src:
 		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff')
@@ -34,7 +32,7 @@ ul li {
 	padding-top: 0;
 	padding-left: 0;
 	float: left;
-	list-style: none;
+	
 	font-size: 14px;
 	line-height: 50%;
 	margin-top: 10px;
@@ -107,7 +105,6 @@ hr {
 }
 
 a {
-	padding: 10px;
 	margin-top: 10px;
 	text-decoration: none;
 	color: white;
@@ -182,7 +179,7 @@ input[type="submit"] {
 	width: 25px;
 	display: inline-block;
 	float: right;
-	background: url('../images/search_icon.png');
+	background: url('../../images/index/search.png');
 	background-size: 25px;
 	background-repeat: no-repeat;
 	text-indent: -10000px;
@@ -199,7 +196,7 @@ input[type="submit"] {
 }
 
 <!-- 동영상 css 추가 -->
-#vid{position:absolute; left:50%; top: 0; margin-left:-50%; width:100%;height:auto; z-index:1;}
+#vid{position:absolute left:50%; top 0; margin-left:-50%; width:100%;height:auto; z-index:1;}
 .keyvisual .keyvisual_inner .video_area{position:relative; width:100%; height:700px; overflow:hidden;}
 .keyvisual .keyvisual_inner .video_area .key_icon{position:relative; text-align:left; margin-top:40%; z-index: 9;  margin-left: 50px;}
 .keyvisual .keyvisual_inner .video_area .key_icon.active{margin-top:12%; transition:all 1s;}

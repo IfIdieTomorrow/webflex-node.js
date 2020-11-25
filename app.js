@@ -27,7 +27,7 @@ app.set('views',
     path.join(__dirname, 'views/pay'),
     path.join(__dirname, "views/board"),
     path.join(__dirname, "views/notice"),
-    path.join(__dirname, "views/movie"),
+    path.join(__dirname, 'views/movieView')
   ]
 );
 app.set('view engine', 'ejs');

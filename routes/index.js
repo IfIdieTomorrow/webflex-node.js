@@ -16,7 +16,7 @@ const imgUploadRouter = require("./board/imgUpload");
 const replyRouter = require("./board/reply/reply");
 const noticeRouter = require("./notice/notice");
 const signOutRouter = require("./user/signout");
-const movieRouter = require("./movie/movie");
+const movieRouter = require("./webflexMovie/movie");
 // 파일 업로드
 const multer = require("multer");
 const storage = multer.diskStorage({
