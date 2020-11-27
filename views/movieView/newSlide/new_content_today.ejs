@@ -18,7 +18,7 @@ html, #slide_body{
   font-size: 14px;
   color: #fff;
   margin: 0;
-  padding: 0;
+  padding: 0 0;
 }
 
 .swiper-container {
@@ -40,7 +40,6 @@ html, #slide_body{
   -ms-flex-align: center;
   align-items: center;
 }
-
 
 h1 {
   font-family: Arial, Helvetica, sans-serif;
@@ -89,14 +88,14 @@ margin:0px;
 
 </head>
 <body id="slide_body">
+
  <!-- Swiper -->
   <div class="netflix-slider">
-    <h2>로맨스 : 당신이 느꼈던 그때 그 감정</h2>
+    <h2>오늘 업데이트된 서비스</h2>
     <div class="swiper-container">
       <div class="swiper-wrapper">
-      
-      <% for(let m of romance) {%> 
-        <div class="swiper-slide"><a href="/movie/info?movieId=<%=m.id%> "><img src="<%=m.list_poster  %> " alt="Movie Title" id="poster"></a></div>
+      <% for(let m of day){ %> 
+        <div class="swiper-slide"><a href="/movie/info?movieId=<%= m.id %> "><img src="<%=m.list_poster  %> " alt="Movie Title" id="poster"></a></div>
       <% } %> 
       </div>
       <br>

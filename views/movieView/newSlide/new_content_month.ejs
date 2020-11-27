@@ -18,7 +18,7 @@ html, #slide_body{
   font-size: 14px;
   color: #fff;
   margin: 0;
-  padding: 0;
+  padding: 0 0;
 }
 
 .swiper-container {
@@ -91,13 +91,15 @@ margin:0px;
 <body id="slide_body">
  <!-- Swiper -->
   <div class="netflix-slider">
-    <h2>로맨스 : 당신이 느꼈던 그때 그 감정</h2>
+    <h2>신규 영화</h2>
     <div class="swiper-container">
       <div class="swiper-wrapper">
       
-      <% for(let m of romance) {%> 
-        <div class="swiper-slide"><a href="/movie/info?movieId=<%=m.id%> "><img src="<%=m.list_poster  %> " alt="Movie Title" id="poster"></a></div>
-      <% } %> 
+      	<% for(let m of month){ %> 
+      	
+        <div class="swiper-slide"><a href="/movie/info?movieId=<%= m.id%>"><img src="<%= m.list_poster %> " alt="Movie Title" id="poster"></a></div>
+
+        <% } %> 
       </div>
       <br>
       <!-- Add Pagination -->

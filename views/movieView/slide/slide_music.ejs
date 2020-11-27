@@ -90,12 +90,12 @@ margin:0px;
 </head>
 <body id="slide_body">
  <!-- Swiper -->
-  <div class="netflix-slider">
-    <h2>로맨스 : 당신이 느꼈던 그때 그 감정</h2>
+  <div class="netflix-slider" style="margin-top: 200px;">
+    <h2>음악 : 소름돋는 전율</h2>
     <div class="swiper-container">
       <div class="swiper-wrapper">
       
-      <% for(let m of romance) {%> 
+      <% for(let m of music) {%> 
         <div class="swiper-slide"><a href="/movie/info?movieId=<%=m.id%> "><img src="<%=m.list_poster  %> " alt="Movie Title" id="poster"></a></div>
       <% } %> 
       </div>
