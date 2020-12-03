@@ -150,6 +150,7 @@ border-radius:10px;
 </head>
 
 <body>
+	
 	<header>
 		<% include ./header/main_header.ejs %> 
 	</header>
@@ -291,9 +292,9 @@ border-radius:10px;
 	<div id="slide_main_wrap">
 	<!-- 슬라이드 시작 -->
 		<div class="slide_start">
-			<c:if test="${!empty category }">
-			<jsp:include page="../slide/main_slide/content_userLike.jsp"></jsp:include>
-			</c:if>
+			<% if(categoryMovies.length != 0){ %>
+				<% include ./movieView/slide/slide_category.ejs %>
+			<% } %>
 			<% include ./movieView/slide/slide_action.ejs %>
 			<% include ./movieView/slide/slide_comedy.ejs %>
 			<% include ./movieView/slide/slide_drama.ejs %>

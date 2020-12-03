@@ -31,11 +31,10 @@ header.upper.fix{
 ul li {
 	padding-top: 0;
 	padding-left: 0;
-	float: left;
-	
 	font-size: 14px;
 	line-height: 50%;
 	margin-top: 10px;
+	text-align: center;
 }
 
 ul#main_ul {
@@ -89,7 +88,7 @@ hr {
 	padding: 10px;
 	padding-top: 0px; text-align : left;
 	color: white;
-	float: right;
+	float: none;
 	list-style: none;
 	visibility: hidden; /* hides sub-menu */
 	opacity: 0;

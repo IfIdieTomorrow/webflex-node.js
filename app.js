@@ -11,7 +11,7 @@ const flash = require("connect-flash");
 const MySQLStore = require("express-mysql-session")(session);
 const db = require("./bin/db");
 const db_info = require("./bin/db_info");
-db.connect();
+
 
 const indexRouter = require('./routes/index');
 

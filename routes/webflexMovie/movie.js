@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../../bin/db");
+const async = require("async");
 
 router.get("/list", (request, response)=>{
     if(request.session.status == undefined){
@@ -10,35 +11,62 @@ router.get("/list", (request, response)=>{
         response.redirect("/pass/pay")
     }
     let rand = Math.floor((Math.random() * 3)+1);
-    db.query("SELECT * FROM movie WHERE category = '액션'",(err, actionMovie)=>{
-        if(err) throw err;
-        db.query("SELECT * FROM movie WHERE category = '로맨스'",(err, romanceMovie)=>{
+    let movieList = {};
+    const categoryMovies = [];
+    new Promise((resolve, reject)=>{
+        db.query("SELECT category FROM wf_user WHERE nick = ?",[request.session.nick],(err, category)=>{
+            if(err) reject(err);
+            let categoryArr = null;
+            if(category[0].category != null){
+                categoryArr = category[0].category.split("/")
+            }
+            resolve(categoryArr)
+        })
+    })
+    .then((response) => {
+        if(response != null){
+            for(const m of response){
+                db.query("SELECT * FROM movie WHERE category = ?",[m],(err, result)=>{
+                    console.log(m);
+                    categoryMovies.push(...result);
+                })   
+            }
+        }
+    })
+    .then(() => {
+        db.query("SELECT * FROM movie WHERE category = '액션'",(err, actionMovie)=>{
             if(err) throw err;
-            db.query("SELECT * FROM movie WHERE category = 'SF'",(err, sfMovie)=>{
+            db.query("SELECT * FROM movie WHERE category = '로맨스'",(err, romanceMovie)=>{
                 if(err) throw err;
-                db.query("SELECT * FROM movie WHERE category = '코메디'",(err, comedyMovie)=>{
+                db.query("SELECT * FROM movie WHERE category = 'SF'",(err, sfMovie)=>{
                     if(err) throw err;
-                    db.query("SELECT * FROM movie WHERE category = '스릴러'",(err, thrillerMovie)=>{
+                    db.query("SELECT * FROM movie WHERE category = '코메디'",(err, comedyMovie)=>{
                         if(err) throw err;
-                        db.query("SELECT * FROM movie WHERE category = '음악'",(err, musicMovie)=>{
+                        db.query("SELECT * FROM movie WHERE category = '스릴러'",(err, thrillerMovie)=>{
                             if(err) throw err;
-                            db.query("SELECT * FROM movie WHERE category = '애니메이션'",(err, animationMovie)=>{
+                            db.query("SELECT * FROM movie WHERE category = '음악'",(err, musicMovie)=>{
                                 if(err) throw err;
-                                db.query("SELECT * FROM movie WHERE category = '판타지'",(err, fantasyMovie)=>{
+                                db.query("SELECT * FROM movie WHERE category = '애니메이션'",(err, animationMovie)=>{
                                     if(err) throw err;
-                                    db.query("SELECT * FROM movie WHERE category = '드라마'",(err, dramaMovie)=>{
+                                    db.query("SELECT * FROM movie WHERE category = '판타지'",(err, fantasyMovie)=>{
                                         if(err) throw err;
-                                        response.render("movieList",{
-                                            rand : rand,
-                                            action : actionMovie,
-                                            romance : romanceMovie,
-                                            SF : sfMovie,
-                                            comedy : comedyMovie,
-                                            thriller : thrillerMovie,
-                                            music : musicMovie,
-                                            animation : animationMovie,
-                                            fantasy : fantasyMovie,
-                                            drama : dramaMovie
+                                        db.query("SELECT * FROM movie WHERE category = '드라마'",(err, dramaMovie)=>{
+                                            if(err) throw err;
+                                            const movies = {
+                                                rand : rand,
+                                                action : actionMovie,
+                                                romance : romanceMovie,
+                                                SF : sfMovie,
+                                                comedy : comedyMovie,
+                                                thriller : thrillerMovie,
+                                                music : musicMovie,
+                                                animation : animationMovie,
+                                                fantasy : fantasyMovie,
+                                                drama : dramaMovie,
+                                                categoryMovies : categoryMovies
+                                            }
+                                            console.log(categoryMovies);
+                                            response.render("movieList",movies);
                                         });
                                     });
                                 });
@@ -49,7 +77,56 @@ router.get("/list", (request, response)=>{
             });
         });
     });
-});
+})
+
+// router.get("/list", (request, response)=>{
+//     if(request.session.status == undefined){
+//         response.redirect("/user/login");
+//         return;
+//     }else if(!request.session.payment){
+//         response.redirect("/pass/pay")
+//     }
+//     let rand = Math.floor((Math.random() * 3)+1);
+//     db.query("SELECT * FROM movie WHERE category = '액션'",(err, actionMovie)=>{
+//         if(err) throw err;
+//         db.query("SELECT * FROM movie WHERE category = '로맨스'",(err, romanceMovie)=>{
+//             if(err) throw err;
+//             db.query("SELECT * FROM movie WHERE category = 'SF'",(err, sfMovie)=>{
+//                 if(err) throw err;
+//                 db.query("SELECT * FROM movie WHERE category = '코메디'",(err, comedyMovie)=>{
+//                     if(err) throw err;
+//                     db.query("SELECT * FROM movie WHERE category = '스릴러'",(err, thrillerMovie)=>{
+//                         if(err) throw err;
+//                         db.query("SELECT * FROM movie WHERE category = '음악'",(err, musicMovie)=>{
+//                             if(err) throw err;
+//                             db.query("SELECT * FROM movie WHERE category = '애니메이션'",(err, animationMovie)=>{
+//                                 if(err) throw err;
+//                                 db.query("SELECT * FROM movie WHERE category = '판타지'",(err, fantasyMovie)=>{
+//                                     if(err) throw err;
+//                                     db.query("SELECT * FROM movie WHERE category = '드라마'",(err, dramaMovie)=>{
+//                                         if(err) throw err;
+//                                         response.render("movieList",{
+//                                             rand : rand,
+//                                             action : actionMovie,
+//                                             romance : romanceMovie,
+//                                             SF : sfMovie,
+//                                             comedy : comedyMovie,
+//                                             thriller : thrillerMovie,
+//                                             music : musicMovie,
+//                                             animation : animationMovie,
+//                                             fantasy : fantasyMovie,
+//                                             drama : dramaMovie
+//                                         });
+//                                     });
+//                                 });
+//                             });
+//                         });
+//                     });
+//                 });
+//             });
+//         });
+//     });
+// });
 
 router.get("/info",(request, response)=>{
     if(request.session.status == undefined){
@@ -105,4 +182,5 @@ router.get("/search" ,(request, response)=>{
         response.render("searchView", {search : result, keyword : request.query.key})
     });
 });
+
 module.exports = router;
