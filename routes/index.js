@@ -69,7 +69,7 @@ router.get('/', function(req, res, next) {
       req.session.social = req.user.social;
       req.session.authority = req.user.authority;
       req.session.status = "logined";
-      res.render("index");
+      res.redirect("/user/mypage");
     })
   } else {
     res.render('index');

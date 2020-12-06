@@ -301,7 +301,7 @@ height: auto;
 
 		<div class="container">
 			<!-- 재생 포스터 부분 -->
-			<a href="<%=movie.video%>"> <img src="<%=movie.info_poster%>"
+			<a href="/movie/video?movieId=<%=movie.id%> " > <img src="<%=movie.info_poster%>"
 				id="post_play" alt="cover" class="cover" width="187px"
 				height="282px" /> <i class="far fa-play-circle"></i>
 			</a>
@@ -319,29 +319,6 @@ height: auto;
 					<div class="title2">
 						<%=movie.sub_title%>
 					</div>
-
-				<!-- 	<fieldset class="rating">
-						<input type="radio" id="star5" name="rating" value="5" /><label
-							class="full" for="star5" title="Awesome - 5 stars"></label> <input
-							type="radio" id="star4half" name="rating" value="4 and a half" /><label
-							class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-						<input type="radio" id="star4" name="rating" value="4" checked /><label
-							class="full" for="star4" title="Pretty good - 4 stars"></label> <input
-							type="radio" id="star3half" name="rating" value="3 and a half" /><label
-							class="half" for="star3half" title="Meh - 3.5 stars"></label> <input
-							type="radio" id="star3" name="rating" value="3" /><label
-							class="full" for="star3" title="Meh - 3 stars"></label> <input
-							type="radio" id="star2half" name="rating" value="2 and a half" /><label
-							class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-						<input type="radio" id="star2" name="rating" value="2" /><label
-							class="full" for="star2" title="Kinda bad - 2 stars"></label> <input
-							type="radio" id="star1half" name="rating" value="1 and a half" /><label
-							class="half" for="star1half" title="Meh - 1.5 stars"></label> <input
-							type="radio" id="star1" name="rating" value="1" /><label
-							class="full" for="star1" title="Sucks big time - 1 star"></label>
-						<input type="radio" id="starhalf" name="rating" value="half" /><label
-							class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-					</fieldset> -->
 
 				</div>
 				<!-- end details -->
@@ -361,45 +338,6 @@ height: auto;
 					<p>
 						<%=movie.content%>
 					</p>
-					<!-- 평론가 부분 -->
-					<!-- <div class="avatars">
-						<c:if test="${!empty Comment.joy}">
-							<a href="#" data-tooltip="${Comment.joy}" data-placement="top">
-								<img
-								src="${pageContext.request.contextPath}/resources/images/face/나은.png"
-								alt="avatar1" />
-							</a>
-						</c:if>
-						<c:if test="${!empty Comment.stone}">
-							<a href="#" data-tooltip="${Comment.stone}" data-placement="top">
-								<img
-								src="${pageContext.request.contextPath}/resources/images/face/진석.png"
-								alt="avatar2" />
-							</a>
-						</c:if>
-						<c:if test="${!empty Comment.dragon}">
-						<a href="#" data-tooltip="${Comment.dragon}" data-placement="top">
-							<img
-							src="${pageContext.request.contextPath}/resources/images/face/용준.png"
-							alt="avatar3" />
-						</a>
-						</c:if>
-						<c:if test="${!empty Comment.fire}">
-							<a href="#" data-tooltip="${Comment.fire}" data-placement="top">
-								<img
-								src="${pageContext.request.contextPath}/resources/images/face/동열.png"
-								alt="avatar3" />
-							</a>
-						</c:if>
-						<c:if test="${!empty Comment.sun}">
-							<a href="#" data-tooltip="${Comment.sun}" data-placement="top">
-								<img
-								src="${pageContext.request.contextPath}/resources/images/face/병선.png"
-								alt="avatar3" />
-							</a>
-						</c:if>
-					</div> -->
-					<!-- end avatars -->
 				</div>
 				<!-- end column2 -->
 			</div>

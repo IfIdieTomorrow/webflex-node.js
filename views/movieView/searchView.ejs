@@ -187,55 +187,10 @@ text-decoration: none;
 	<header>
 		<% include ./header/main_header.ejs %> 
 	</header>
-	<div id="Rel_content">
-			<span>다음과 관련된 컨텐츠 :
-			<ul class="Rel_content_ul">
-				<c:set var="loop_flag" value="false" /> <!-- break 대신 -->
-					<c:forEach var="m" items="${relMovie}" varStatus="status">
-						<c:if test="${status.last}">
-						
-							<li class="search_li"<a href="/searchView?search=${m}">&nbsp;${m}</a></li>
-						
-							<c:set var="loop_flag" value="true" />
-						</c:if>
-						<c:if test="${not loop_flag}">
-						
-							<li class="search_li"><a href="/searchView?search=${m}">&nbsp;${m} |</a></li>
-						
-						</c:if>
-					</c:forEach>
-			</ul>
-			</span>
-	</div>
 	
 	<div id="clear"></div>
 	
 <div class="row">
- <!--  <div class="example-1 card">
-    <div class="wrapper">
-      <div class="date">
-        <span class="day">12</span>
-        <span class="month">Aug</span>
-        <span class="year">2016</span>
-      </div>
-      <div class="data">
-        <div class="content">
-          <span class="author">Jane Doe</span>
-          <h1 class="title"><a href="#">Boxing icon has the will for a couple more fights</a></h1>
-          <p class="text">The highly anticipated world championship fight will take place at 10am and is the second major boxing blockbuster in the nation after 43 years.</p>
-          <label for="show-menu" class="menu-button"><span></span></label>
-        </div>
-        <input type="checkbox" id="show-menu" />
-        <ul class="menu-content">
-          <li>
-            <a href="#" class="fa fa-bookmark-o"></a>
-          </li>
-          <li><a href="#" class="fa fa-heart-o"><span>47</span></a></li>
-          <li><a href="#" class="fa fa-comment-o"><span>8</span></a></li>
-        </ul>
-      </div>
-    </div>
-  </div> -->
 	<% if(search.length != 0){ %>   
 	  <% for(let m of search){ %> 
 	  	<div class="example-2 card">
