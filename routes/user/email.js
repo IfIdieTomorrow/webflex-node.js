@@ -24,7 +24,7 @@ router.get("/access", (request, response)=>{
 router.post("/access", async(request, response)=>{
     let authNum = Math.random().toString().substr(2,6);
     let emailTemplete;
-    ejs.renderFile('C:\\Users\\kwanhee\\Desktop\\WEBFLEX\\webflex\\views\\mailtemplate.ejs', {nick : request.session.nick ,authCode : authNum}, function (err, data) {
+    ejs.renderFile('C:\\Users\\kwanhee\\Desktop\\GitHub\\WEBFLEX\\webflex\\views\\mailtemplate.ejs', {nick : request.session.nick ,authCode : authNum}, function (err, data) {
     if(err){console.log('ejs.renderFile err')}
         emailTemplete = data;
     });

@@ -33,6 +33,10 @@
                 msg += '\n결제 금액 : ' + rsp.paid_amount;
                 msg += '\n카드 승인번호 : ' + rsp.apply_num;
                 alert(msg);
+
+                // 테스트 결제로 진행되긴 하지만 최소의 금액으로 진행하기 위한 
+                // 테스트용 코드입니다. DB에서 이용권에 관한 금액과 이용권 고유 ID를 
+                // 넣어야 합니다.
                 if(rsp.paid_amount == 100){
                     location.href = "/pass/pay/success?no="+100;
                 } else if(rsp.paid_amount == 101){

@@ -5,3 +5,5 @@ auth.js
 db_info.js
 mail_info.js
 uploads
+movie
+.vscode

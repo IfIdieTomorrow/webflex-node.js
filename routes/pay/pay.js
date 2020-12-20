@@ -31,7 +31,8 @@ router.get("/success" , (request, response)=>{
         ['결제완료',request.query.no,request.session.nick],(err, result)=>{
             if(err) throw err;
             request.session.save(()=>{
-                request.user.payment = 1;
+                request.user.payment = true;
+                request.session.payment = true;
                 response.redirect("/user/mypage");
         });
     });

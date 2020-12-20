@@ -16,6 +16,7 @@ const imgUploadRouter = require("./board/imgUpload");
 const replyRouter = require("./board/reply/reply");
 const noticeRouter = require("./notice/notice");
 const signOutRouter = require("./user/signout");
+const movieRouter = require("./webflexMovie/movie");
 // 파일 업로드
 const multer = require("multer");
 const storage = multer.diskStorage({
@@ -56,6 +57,8 @@ router.use("/board/reply", replyRouter);
 //--------------------------------------------------------
 router.use("/notice", noticeRouter);
 //--------------------------------------------------------
+router.use("/movie", movieRouter);
+//--------------------------------------------------------
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -66,7 +69,7 @@ router.get('/', function(req, res, next) {
       req.session.social = req.user.social;
       req.session.authority = req.user.authority;
       req.session.status = "logined";
-      res.render("index");
+      res.redirect("/user/mypage");
     })
   } else {
     res.render('index');
